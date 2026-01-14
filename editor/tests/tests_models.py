@@ -10,7 +10,6 @@ class ModelsTests(TestCase):
         topic = Topic.objects.create(name=name)
         self.assertEqual(str(topic), name)
 
-
     def test_newspaper_str(self) -> None:
         topics = Topic.objects.bulk_create(
             (Topic(name="IT"), Topic(name="Politics"))
