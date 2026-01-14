@@ -28,4 +28,5 @@ class Redactor(AbstractUser):
     years_of_experience = models.IntegerField(null=True, blank=True)
 
     class Meta:
+        ordering = ("username", )
         verbose_name = "redactors"
