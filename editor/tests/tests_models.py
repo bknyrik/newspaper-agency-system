@@ -26,3 +26,15 @@ class ModelsTests(TestCase):
                 str(topic) for topic in newspaper.topics.all()
             )})"
         )
+
+    def test_redactor_str(self) -> None:
+        redactor = Redactor.objects.create(
+            username="johndoe",
+            first_name="John",
+            last_name="Doe"
+        )
+        self.assertEqual(
+            str(redactor),
+            f"{redactor.username} "
+            f"({redactor.first_name} {redactor.last_name})"
+        )
