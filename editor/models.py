@@ -6,6 +6,9 @@ from django.contrib.auth import settings
 class Topic(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class Newspaper(models.Model):
     title = models.CharField(max_length=255)
