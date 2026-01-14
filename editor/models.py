@@ -23,6 +23,9 @@ class Newspaper(models.Model):
         related_name="newspapers"
     )
 
+    class Meta:
+        ordering = ("published_date", )
+
 
 class Redactor(AbstractUser):
     years_of_experience = models.IntegerField(null=True, blank=True)
