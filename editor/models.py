@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import settings
 
 
 class Topic(models.Model):
@@ -11,6 +12,10 @@ class Newspaper(models.Model):
     content = models.TextField()
     published_data = models.DateField()
     topics = models.ManyToManyField(Topic, related_name="newspapers")
+    publishers = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="newspapers"
+    )
 
 
 class Redactor(AbstractUser):
