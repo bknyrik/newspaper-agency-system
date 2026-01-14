@@ -38,7 +38,7 @@ class Redactor(AbstractUser):
 
     class Meta:
         ordering = ("username", )
-        verbose_name = "redactors"
+        verbose_name = "redactor"
 
     def __str__(self) -> str:
         return f"{self.username} ({self.first_name} {self.last_name})"
