@@ -29,6 +29,31 @@ class TopicsListFilter(admin.SimpleListFilter):
         return queryset.all()
 
 
+class PublishersListFilter(admin.SimpleListFilter):
+    title = _("publishers")
+    parameter_name = "publisher"
+
+    def lookups(
+        self,
+        request: HttpRequest,
+        model_admin: "NewspaperAdmin"
+    ) -> tuple[tuple[int, str], ...]:
+        return tuple(
+            (redactor.id, str(redactor))
+            for redactor in Redactor.objects.all()
+        )
+
+    def queryset(
+        self,
+        request: HttpRequest,
+        queryset: QuerySet[Newspaper]
+    ) -> QuerySet[Newspaper]:
+        if self.value():
+            return queryset.filter(publishers__id=self.value())
+
+        return queryset.all()
+
+
 @admin.register(Redactor)
 class RedactorAdmin(UserAdmin):
     list_display = UserAdmin.list_display + ("years_of_experience",)
@@ -53,7 +78,7 @@ class NewspaperAdmin(admin.ModelAdmin):
     list_filter = (
         "published_date",
         TopicsListFilter,
-        "publishers__username"
+        PublishersListFilter
     )
     search_fields = ("title", )
 
