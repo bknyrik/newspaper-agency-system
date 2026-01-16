@@ -26,7 +26,6 @@ class RedactorAdmin(UserAdmin):
 class NewspaperAdmin(admin.ModelAdmin):
     list_display = ("title", "published_date", "get_topics")
     list_filter = (
-        "title",
         "published_date",
         "topics",
         "publishers__username"
