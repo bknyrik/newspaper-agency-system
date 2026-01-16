@@ -33,6 +33,7 @@ class NewspaperAdmin(admin.ModelAdmin):
     )
     search_fields = ("title", )
 
+    @admin.display(description="Topics")
     def get_topics(self, newspaper: Newspaper) -> str:
         return ", ".join(str(topic) for topic in newspaper.topics.all())
 
