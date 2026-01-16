@@ -1,7 +1,32 @@
+from django.db.models import QuerySet
+from django.http import HttpRequest
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.utils.translation import gettext_lazy as _
 
 from editor.models import Topic, Newspaper, Redactor
+
+
+class TopicsListFilter(admin.SimpleListFilter):
+    title = _("topics")
+    parameter_name = "topic"
+
+    def lookups(
+        self,
+        request: HttpRequest,
+        model_admin: "NewspaperAdmin"
+    ) -> tuple[tuple[int, str], ...]:
+        return tuple((topic.id, topic.name) for topic in Topic.objects.all())
+
+    def queryset(
+        self,
+        request: HttpRequest,
+        queryset: QuerySet[Newspaper]
+    ) -> QuerySet[Newspaper]:
+        if self.value():
+            return queryset.filter(topics__id=self.value())
+
+        return queryset.all()
 
 
 @admin.register(Redactor)
@@ -27,7 +52,7 @@ class NewspaperAdmin(admin.ModelAdmin):
     list_display = ("title", "published_date", "get_topics")
     list_filter = (
         "published_date",
-        "topics",
+        TopicsListFilter,
         "publishers__username"
     )
     search_fields = ("title", )
