@@ -21,3 +21,6 @@ class Redactor(AbstractUser):
             validators.MinValueValidator(limit_value=1),
         )
     )
+
+    class Meta:
+        verbose_name = "redactor"
