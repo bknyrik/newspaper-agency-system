@@ -47,3 +47,6 @@ class Newspaper(models.Model):
                 name="unique_lower_title_content"
             ),
         )
+
+    def __str__(self) -> str:
+        return self.title
