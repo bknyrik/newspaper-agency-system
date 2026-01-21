@@ -24,3 +24,6 @@ class Redactor(AbstractUser):
 
     class Meta:
         verbose_name = "redactor"
+
+    def __str__(self) -> str:
+        return f"{self.username} ({self.get_full_name()})"
