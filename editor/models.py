@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import constraints
+from django.db.models import functions
 from django.contrib.auth import settings
 from django.contrib.auth.models import AbstractUser
 from django.core import validators
@@ -36,3 +38,12 @@ class Newspaper(models.Model):
     published_date = models.DateField(auto_now_add=True)
     topics = models.ManyToManyField(Topic, related_name="newspapers")
     publishers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="newspapers")
+
+    class Meta:
+        constraints = (
+            constraints.UniqueConstraint(
+                functions.Lower("title"),
+                "content",
+                name="unique_lower_title_content"
+            ),
+        )
