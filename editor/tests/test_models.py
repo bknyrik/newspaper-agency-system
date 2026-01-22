@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
-from editor.models import Topic, Newspaper, Redactor
+from editor.models import Topic, Newspaper
 
 
 class ModelTests(TestCase):
