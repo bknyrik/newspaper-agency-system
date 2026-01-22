@@ -39,3 +39,14 @@ class ModelTests(TestCase):
             str(redactor),
             f"{redactor.username}: ({redactor.get_full_name()})"
         )
+
+    def test_create_redactor_with_years_of_experience(self) -> None:
+        data = {
+            "username": "Test username",
+            "password": "test12345",
+            "years_of_experience": 10
+        }
+        redactor = get_user_model().objects.create_user(**data)
+        self.assertEqual(redactor.username, data["username"])
+        self.assertEqual(redactor.years_of_experience, data["years_of_experience"])
+        self.assertTrue(redactor.check_password(data["password"]))
