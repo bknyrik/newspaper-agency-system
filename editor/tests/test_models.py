@@ -48,5 +48,8 @@ class ModelTests(TestCase):
         }
         redactor = get_user_model().objects.create_user(**data)
         self.assertEqual(redactor.username, data["username"])
-        self.assertEqual(redactor.years_of_experience, data["years_of_experience"])
+        self.assertEqual(
+            redactor.years_of_experience,
+            data["years_of_experience"]
+        )
         self.assertTrue(redactor.check_password(data["password"]))
