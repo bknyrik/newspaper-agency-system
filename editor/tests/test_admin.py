@@ -26,3 +26,11 @@ class AdminSiteTests(TestCase):
         url = reverse("admin:editor_redactor_change", args=[self.redactor.id])
         response = self.client.get(url)
         self.assertContains(response, self.redactor.years_of_experience)
+
+    def test_redactor_additional_info(self) -> None:
+        url = reverse("admin:editor_redactor_add")
+        response = self.client.get(url)
+        self.assertContains(response, "First name")
+        self.assertContains(response, "Last name")
+        self.assertContains(response, "Email")
+        self.assertContains(response, "Years of experience")
