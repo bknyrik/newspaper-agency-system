@@ -51,6 +51,6 @@ class Newspaper(models.Model):
     def __str__(self) -> str:
         return (
             f"{self.title} "
-            f" (date: {self.published_date},"
-            f" topics: {",".join(str(topic) for topic in self.topics.all())})"
+            f"(date: {self.published_date} "
+            f"topics: {", ".join(str(topic) for topic in self.topics.all())})"
         )
