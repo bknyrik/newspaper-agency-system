@@ -79,6 +79,7 @@ class NewspaperAdmin(admin.ModelAdmin):
     empty_value_display = "Absent"
     list_display = ("title", "published_date", "get_topics")
     list_filter = ("published_date", "topics", )
+    search_fields = ("title",)
 
     @admin.display(description="topics")
     def get_topics(self, newspaper: Newspaper) -> str:
