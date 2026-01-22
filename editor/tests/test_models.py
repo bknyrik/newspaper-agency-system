@@ -1,6 +1,7 @@
 from django.test import TestCase
+from django.contrib.auth import get_user_model
 
-from editor.models import Topic, Newspaper
+from editor.models import Topic, Newspaper, Redactor
 
 
 class ModelTests(TestCase):
@@ -26,4 +27,15 @@ class ModelTests(TestCase):
             f"{newspaper.title} "
             f"(date: {newspaper.published_date} "
             f"topics: {topics[0]}, {topics[1]})"
+        )
+
+    def test_redactor_str(self) -> None:
+        redactor = get_user_model().objects.create(
+            username="Test username",
+            first_name="Test first",
+            last_name="Test last"
+        )
+        self.assertEqual(
+            str(redactor),
+            f"{redactor.username}: ({redactor.get_full_name()})"
         )
