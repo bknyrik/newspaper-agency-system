@@ -26,7 +26,7 @@ class ModelTests(TestCase):
             str(newspaper),
             f"{newspaper.title} "
             f"(date: {newspaper.published_date} "
-            f"topics: {topics[0]}, {topics[1]})"
+            f"topics: {newspaper.topics_str})"
         )
 
     def test_redactor_str(self) -> None:
