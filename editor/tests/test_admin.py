@@ -34,3 +34,17 @@ class AdminSiteTests(TestCase):
         self.assertContains(response, "Last name")
         self.assertContains(response, "Email")
         self.assertContains(response, "Years of experience")
+
+    def test_redactor_filter_by_years_of_experience(self) -> None:
+        url = reverse(
+            "admin:editor_redactor_changelist",
+            query={"years_of_experience": "20"}
+        )
+        redactor2 = get_user_model().objects.create_user(
+            username="testuser2",
+            password="test09876",
+            years_of_experience=18
+        )
+        response = self.client.get(url)
+        self.assertContains(response, self.redactor.username)
+        self.assertNotContains(response, redactor2.username)
