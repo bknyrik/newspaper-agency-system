@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.http import HttpRequest
 from django.db.models import QuerySet
 
-from editor.models import Topic, Redactor
+from editor.models import Topic, Redactor, Newspaper
 
 
 class YearsOfExperienceListFilter(admin.SimpleListFilter):
@@ -72,6 +72,17 @@ class RedactorAdmin(UserAdmin):
             ),
         )
     )
+
+
+@admin.register(Newspaper)
+class NewspaperAdmin(admin.ModelAdmin):
+    empty_value_display = "Absent"
+    list_display = ("title", "published_date", "get_topics")
+    list_filter = ("topics", )
+
+    @admin.display(description="topics")
+    def get_topics(self, newspaper: Newspaper) -> str:
+        return newspaper.topics_str
 
 
 admin.site.register(Topic)
