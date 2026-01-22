@@ -12,22 +12,34 @@ class ModelTests(TestCase):
         self.assertEqual(str(topic), name)
 
     def test_newspaper_str(self) -> None:
-        topics = Topic.objects.bulk_create(
-            (
-                Topic(name="Test topic"),
-                Topic(name="Test topic 2")
+        with self.subTest("With topics"):
+            topics = Topic.objects.bulk_create(
+                (
+                    Topic(name="Test topic"),
+                    Topic(name="Test topic 2")
+                )
             )
-        )
-        newspaper = Newspaper.objects.create(
-            title="Test title"
-        )
-        newspaper.topics.set(topics)
-        self.assertEqual(
-            str(newspaper),
-            f"{newspaper.title} "
-            f"(date: {newspaper.published_date} "
-            f"topics: {newspaper.topics_str})"
-        )
+            newspaper = Newspaper.objects.create(
+                title="Test title"
+            )
+            newspaper.topics.set(topics)
+            self.assertEqual(
+                str(newspaper),
+                f"{newspaper.title} "
+                f"(date: {newspaper.published_date} "
+                f"topics: {newspaper.topics_str})"
+            )
+
+        with self.subTest("Without topics"):
+            newspaper2 = Newspaper.objects.create(
+                title="Test title 2"
+            )
+            self.assertEqual(
+                str(newspaper2),
+                f"{newspaper2.title} "
+                f"(date: {newspaper2.published_date} "
+                f"topics: Absent)"
+            )
 
     def test_redactor_str(self) -> None:
         redactor = get_user_model().objects.create(
