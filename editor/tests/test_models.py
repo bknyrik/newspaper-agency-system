@@ -2,6 +2,7 @@ from django.test import TestCase
 
 from editor.models import Topic
 
+
 class ModelTests(TestCase):
 
     def test_topic_str(self) -> None:
