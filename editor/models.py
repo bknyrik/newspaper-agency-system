@@ -43,8 +43,7 @@ class Newspaper(models.Model):
         constraints = (
             constraints.UniqueConstraint(
                 functions.Lower("title"),
-                "content",
-                name="unique_lower_title_content"
+                name="unique_lower_title"
             ),
         )
 
