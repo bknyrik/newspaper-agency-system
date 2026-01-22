@@ -29,7 +29,7 @@ class Redactor(AbstractUser):
         verbose_name = "redactor"
 
     def __str__(self) -> str:
-        return f"{self.username} ({self.get_full_name()})"
+        return f"{self.username}: ({self.get_full_name()})"
 
 
 class Newspaper(models.Model):
