@@ -55,3 +55,7 @@ class Newspaper(models.Model):
             f"(date: {self.published_date} "
             f"topics: {", ".join(str(topic) for topic in self.topics.all())})"
         )
+
+    @property
+    def topics_str(self) -> str:
+        return ", ".join(str(t) for t in self.topics.all()) or "Absent"
