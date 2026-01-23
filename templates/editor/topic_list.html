@@ -1,4 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Topic list</h1>
+  {% if topic_list %}
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+      </tr>
+      {% for topic in topic_list %}
+        <tr>
+          <td>{{ topic.id }}</td>
+          <td>{{ topic }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
 {% endblock %}
