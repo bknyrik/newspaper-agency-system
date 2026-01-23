@@ -25,3 +25,9 @@ class TopicCreateView(generic.CreateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("editor:topic-list")
+
+
+class TopicUpdateView(generic.UpdateView):
+    model = Topic
+    fields = "__all__"
+    success_url = reverse_lazy("editor:topic-list")
