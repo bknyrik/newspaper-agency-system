@@ -1,6 +1,7 @@
 from django.views import generic
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
 from editor.models import Topic, Newspaper, Redactor
 
@@ -18,3 +19,9 @@ class IndexView(generic.View):
 
 class TopicListView(generic.ListView):
     model = Topic
+
+
+class TopicCreateView(generic.CreateView):
+    model = Topic
+    fields = "__all__"
+    success_url = reverse_lazy("editor:topic-list")
