@@ -14,3 +14,7 @@ class IndexView(generic.View):
             "count_redactors": Redactor.objects.count()
         }
         return render(request, "editor/index.html", context)
+
+
+class TopicListView(generic.ListView):
+    model = Topic
