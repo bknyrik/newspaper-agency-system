@@ -50,4 +50,4 @@ class NewspaperDetailView(generic.DetailView):
 class NewspaperCreateView(generic.CreateView):
     model = Newspaper
     fields = "__all__"
-    success_url = reverse_lazy("editor:topic-list")
+    success_url = reverse_lazy("editor:newspaper-list")
