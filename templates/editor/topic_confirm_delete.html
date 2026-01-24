@@ -1,12 +1,4 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Delete topic {{ topic }}?</h1>
-  <form action="" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <br>
-    <input type="submit" value="Yes">
-  </form>
-  <br>
-  <a href="{% url "editor:topic-list" %}">Back to the topic list</a>
+  {% include "include/confirm_delete_form.html" with object_type="topic" object_name=topic.name object_list_url="editor:topic-list" %}
 {% endblock %}
