@@ -1,6 +1,6 @@
 from django.views import generic
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.urls import reverse_lazy
 
 from editor.models import Topic, Newspaper, Redactor
@@ -56,7 +56,9 @@ class NewspaperCreateView(generic.CreateView):
 class NewspaperUpdateView(generic.UpdateView):
     model = Newspaper
     fields = "__all__"
-    success_url = reverse_lazy("editor:newspaper-list")
+
+    def get_success_url(self) -> str:
+        return reverse("editor:newspaper-detail", args=[self.object.id])
 
 
 class NewspaperDeleteView(generic.DeleteView):
