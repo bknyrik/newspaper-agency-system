@@ -41,3 +41,7 @@ class TopicDeleteView(generic.DeleteView):
 class NewspaperListView(generic.ListView):
     model = Newspaper
     queryset = Newspaper.objects.prefetch_related("topics")
+
+
+class NewspaperDetailView(generic.DetailView):
+    model = Newspaper
