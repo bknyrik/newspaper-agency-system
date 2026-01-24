@@ -11,4 +11,13 @@
     <h3>Content</h3>
     <p>{{ newspaper.content }}</p>
   </section>
+  <hr>
+  <section>
+    <h3>Publishers</h3>
+    {% for publisher in newspaper.publishers.all %}
+      <p>{{ publisher }}</p>
+      {% empty %}
+      <p>There are no publishers of this newspaper.</p>
+    {% endfor %}
+  </section>
 {% endblock %}
