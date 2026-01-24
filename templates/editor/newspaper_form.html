@@ -1,1 +1,4 @@
 {% extends "base.html" %}
+{% block content %}
+  {% include "include/create_update_form.html" with object_type="newspaper" object_list_url="editor:newspaper-list" %}
+{% endblock %}
