@@ -1,4 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Newspaper {{ newspaper.title }}</h1>
+  <section>
+    <h3>Information</h3>
+    <p>Published date: {{ newspaper.published_date }}</p>
+    <p>Topics: {{ newspaper.topics_str }}</p>
+  </section>
 {% endblock %}
