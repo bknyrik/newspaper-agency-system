@@ -36,3 +36,7 @@ class TopicUpdateView(generic.UpdateView):
 class TopicDeleteView(generic.DeleteView):
     model = Topic
     success_url = reverse_lazy("editor:topic-list")
+
+
+class NewspaperListView(generic.ListView):
+    model = Newspaper
