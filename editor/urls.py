@@ -49,7 +49,7 @@ urlpatterns = [
         name="newspaper-update"
     ),
     path(
-        "newspapers/<int:pk>/delete",
+        "newspapers/<int:pk>/delete/",
         NewspaperDeleteView.as_view(),
         name="newspaper-delete"
     )
