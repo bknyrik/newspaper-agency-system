@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Newspaper list</h1>
+  <a href="{% url "editor:newspaper-create" %}">Create</a>
   {% if newspaper_list %}
     <table>
       <tr>
