@@ -6,6 +6,7 @@ from editor.views import (
     TopicCreateView,
     TopicUpdateView,
     TopicDeleteView,
+    NewspaperListView,
 )
 
 
@@ -22,6 +23,11 @@ urlpatterns = [
         "topics/<int:pk>/delete/",
         TopicDeleteView.as_view(),
         name="topic-delete"
+    ),
+    path(
+        "newspapers/",
+        NewspaperListView.as_view(),
+        name="newspaper-list"
     )
 ]
 
