@@ -18,7 +18,7 @@
     <h3>Publishers</h3>
     {% for publisher in newspaper.publishers.all %}
       <p>{{ publisher }}</p>
-      {% empty %}
+    {% empty %}
       <p>There are no publishers of this newspaper.</p>
     {% endfor %}
   </section>
