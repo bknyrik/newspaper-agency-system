@@ -50,7 +50,9 @@ class NewspaperDetailView(generic.DetailView):
 class NewspaperCreateView(generic.CreateView):
     model = Newspaper
     fields = "__all__"
-    success_url = reverse_lazy("editor:newspaper-list")
+
+    def get_success_url(self) -> str:
+        return reverse("editor:newspaper-detail", args=[self.object.id])
 
 
 class NewspaperUpdateView(generic.UpdateView):
