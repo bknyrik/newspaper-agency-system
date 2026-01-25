@@ -70,3 +70,7 @@ class NewspaperDeleteView(generic.DeleteView):
 
 class RedactorListView(generic.ListView):
     model = Redactor
+
+
+class RedactorDetailView(generic.DetailView):
+    model = Redactor
