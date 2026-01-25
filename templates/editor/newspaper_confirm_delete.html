@@ -1,4 +1,4 @@
 {% extends "base.html" %}
 {% block content %}
-  {% include "include/confirm_delete_form.html" with object_name=newspaper.title object_type="newspaper" object_list_url="editor:newspaper-list" %}
+  {% include "include/confirm_delete_form.html" with name=newspaper.title type="newspaper" url_name="editor:newspaper-list" %}
 {% endblock %}
