@@ -1,4 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Redactor page</h1>
+  <section>
+    <h3>Personal information</h3>
+    <p>Username: {{ redactor.username }}</p>
+    <p>First name: {{ redactor.first_name|default:"Absent" }}</p>
+    <p>Last name: {{ redactor.last_name|default:"Absent" }}</p>
+    <p>Email: {{ redactor.email|default:"Absent" }}</p>
+    <p>Years of experience: {{ redactor.years_of_experience|default:"Absent" }}</p>
+  </section>
 {% endblock %}
