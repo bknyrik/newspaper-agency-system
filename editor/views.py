@@ -83,3 +83,11 @@ class RedactorCreateView(generic.CreateView):
 
     def get_success_url(self) -> str:
         return reverse("editor:redactor-detail", args=[self.object.id])
+
+
+class RedactorUpdateView(generic.UpdateView):
+    model = Redactor
+    fields = "__all__"
+
+    def get_success_url(self) -> str:
+        return reverse("editor:redactor-detail", args=[self.object.id])
