@@ -12,7 +12,7 @@
       </tr>
       {% for redactor in redactor_list %}
         <tr>
-          <td>{{ redactor.id }}</td>
+          <td><a href="{% url "editor:redactor-detail" pk=redactor.id %}">{{ redactor.id }}</a></td>
           <td>{{ redactor.username }}</td>
           <td>{{ redactor.first_name|default:"Absent" }}</td>
           <td>{{ redactor.last_name|default:"Absent" }}</td>
