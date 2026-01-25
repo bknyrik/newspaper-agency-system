@@ -1,1 +1,4 @@
 {% extends "base.html" %}
+{% block content %}
+  {% include "include/confirm_delete_form.html" with type="redactor" name=redactor.username url_name="editor:redactor-detail" pk=redactor.id %}
+{% endblock %}
