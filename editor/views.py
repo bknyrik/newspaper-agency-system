@@ -74,3 +74,11 @@ class RedactorListView(generic.ListView):
 
 class RedactorDetailView(generic.DetailView):
     model = Redactor
+
+
+class RedactorCreateView(generic.CreateView):
+    model = Redactor
+    fields = "__all__"
+
+    def get_success_url(self) -> str:
+        return reverse("editor:redactor-detail", args=[self.object.id])
