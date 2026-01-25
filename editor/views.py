@@ -91,3 +91,8 @@ class RedactorUpdateView(generic.UpdateView):
 
     def get_success_url(self) -> str:
         return reverse("editor:redactor-detail", args=[self.object.id])
+
+
+class RedactorDeleteView(generic.DeleteView):
+    model = Redactor
+    success_url = reverse_lazy("editor:redactor-list")
