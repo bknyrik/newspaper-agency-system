@@ -14,6 +14,7 @@ from editor.views import (
     RedactorListView,
     RedactorDetailView,
     RedactorCreateView,
+    RedactorUpdateView,
 )
 
 
@@ -70,6 +71,11 @@ urlpatterns = [
         "redactors/create/",
         RedactorCreateView.as_view(),
         name="redactor-create"
+    ),
+    path(
+        "redactors/<int:pk>/update/",
+        RedactorUpdateView.as_view(),
+        name="redactor-update"
     )
 ]
 
