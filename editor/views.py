@@ -66,3 +66,7 @@ class NewspaperUpdateView(generic.UpdateView):
 class NewspaperDeleteView(generic.DeleteView):
     model = Newspaper
     success_url = reverse_lazy("editor:newspaper-list")
+
+
+class RedactorListView(generic.ListView):
+    model = Redactor
