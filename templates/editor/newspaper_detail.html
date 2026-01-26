@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Newspaper {{ newspaper.title }}</h1>
+  <h1>Newspaper page</h1>
   <a href="{% url "editor:newspaper-update" pk=newspaper.id %}">Update</a>
   <a href="{% url "editor:newspaper-delete" pk=newspaper.id %}">Delete</a>
   <section>
     <h3>Information</h3>
+    <p>Title: {{ newspaper.title }}</p>
     <p>Published date: {{ newspaper.published_date }}</p>
     <p>Topics: {{ newspaper.topics_str }}</p>
   </section>
