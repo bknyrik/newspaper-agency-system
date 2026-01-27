@@ -9,7 +9,9 @@
 </head>
 <body>
 <header>
-  {% include "include/navigation.html" %}
+  {% block header %}
+    {% include "include/navigation.html" %}
+  {% endblock %}
 </header>
 {% block content %}
 {% endblock %}
