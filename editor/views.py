@@ -72,6 +72,7 @@ class NewspaperDeleteView(generic.DeleteView):
 
 class RedactorListView(generic.ListView):
     model = Redactor
+    paginate_by = 10
 
 
 class RedactorDetailView(generic.DetailView):
