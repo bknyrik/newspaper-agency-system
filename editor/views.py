@@ -19,6 +19,7 @@ class IndexView(generic.View):
 
 class TopicListView(generic.ListView):
     model = Topic
+    paginate_by = 10
 
 
 class TopicCreateView(generic.CreateView):
