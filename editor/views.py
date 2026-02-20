@@ -18,12 +18,12 @@ class IndexView(LoginRequiredMixin, generic.View):
         return render(request, "editor/index.html", context)
 
 
-class TopicListView(generic.ListView):
+class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     paginate_by = 10
 
 
-class TopicCreateView(generic.CreateView):
+class TopicCreateView(LoginRequiredMixin, generic.CreateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("editor:topic-list")
