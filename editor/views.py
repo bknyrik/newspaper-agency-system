@@ -40,25 +40,17 @@ class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("editor:topic-list")
 
 
-class NewspaperListView(generic.ListView):
+class NewspaperListView(LoginRequiredMixin, generic.ListView):
     model = Newspaper
     queryset = Newspaper.objects.prefetch_related("topics")
     paginate_by = 10
 
 
-class NewspaperDetailView(generic.DetailView):
+class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
     model = Newspaper
 
 
-class NewspaperCreateView(generic.CreateView):
-    model = Newspaper
-    fields = "__all__"
-
-    def get_success_url(self) -> str:
-        return reverse("editor:newspaper-detail", args=[self.object.id])
-
-
-class NewspaperUpdateView(generic.UpdateView):
+class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
     model = Newspaper
     fields = "__all__"
 
@@ -66,7 +58,15 @@ class NewspaperUpdateView(generic.UpdateView):
         return reverse("editor:newspaper-detail", args=[self.object.id])
 
 
-class NewspaperDeleteView(generic.DeleteView):
+class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Newspaper
+    fields = "__all__"
+
+    def get_success_url(self) -> str:
+        return reverse("editor:newspaper-detail", args=[self.object.id])
+
+
+class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Newspaper
     success_url = reverse_lazy("editor:newspaper-list")
 
