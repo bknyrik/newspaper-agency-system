@@ -1,4 +1,5 @@
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, reverse
 from django.urls import reverse_lazy
@@ -6,7 +7,7 @@ from django.urls import reverse_lazy
 from editor.models import Topic, Newspaper, Redactor
 
 
-class IndexView(generic.View):
+class IndexView(LoginRequiredMixin, generic.View):
 
     def get(self, request: HttpRequest) -> HttpResponse:
         context = {
