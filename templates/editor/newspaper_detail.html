@@ -1,28 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Newspaper page</h1>
-  <a href="{% url "editor:newspaper-update" pk=newspaper.id %}">Update</a>
-  <a href="{% url "editor:newspaper-delete" pk=newspaper.id %}">Delete</a>
-  <section>
-    <h3>Information</h3>
-    <p>Title: {{ newspaper.title }}</p>
-    <p>Published date: {{ newspaper.published_date }}</p>
-    <p>Topics: {{ newspaper.topics_str }}</p>
-  </section>
-  <hr>
-  <section>
-    <h3>Content</h3>
-    <p>{{ newspaper.content }}</p>
-  </section>
-  <hr>
-  <section>
-    <h3>Publishers</h3>
-    {% for publisher in newspaper.publishers.all %}
-      <p>{{ publisher }}</p>
-    {% empty %}
-      <p>There are no publishers of this newspaper.</p>
-    {% endfor %}
-  </section>
-  <br>
-  <a href="{% url "editor:newspaper-list" %}">Back to the newspaper list</a>
+    <h1>Newspaper page</h1>
+    <a href="{% url "editor:newspaper-update" pk=newspaper.id %}">Update</a>
+    <a href="{% url "editor:newspaper-delete" pk=newspaper.id %}">Delete</a>
+    <section>
+        <h3>Information</h3>
+        <p>Title: {{ newspaper.title }}</p>
+        <p>Published date: {{ newspaper.published_date }}</p>
+        <p>Topics: {{ newspaper.topics_str }}</p>
+    </section>
+    <hr>
+    <section>
+        <h3>Content</h3>
+        <p>{{ newspaper.content }}</p>
+    </section>
+    <hr>
+    <section>
+        <h3>Publishers</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% if newspaper in user.newspapers.all %}
+                <button>Delete me from this newspaper</button>
+            {% else %}
+                <button>Assign me to this car</button>
+            {% endif %}
+        </form>
+        {% for publisher in newspaper.publishers.all %}
+            <p>{{ publisher }}</p>
+        {% empty %}
+            <p>There are no publishers of this newspaper.</p>
+        {% endfor %}
+    </section>
+    <br>
+    <a href="{% url "editor:newspaper-list" %}">Back to the newspaper list</a>
 {% endblock %}
