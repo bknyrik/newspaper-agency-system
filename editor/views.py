@@ -1,7 +1,7 @@
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, reverse
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, reverse, get_object_or_404
 from django.urls import reverse_lazy
 
 from editor.models import Topic, Newspaper, Redactor
@@ -48,6 +48,24 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
 
 class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
     model = Newspaper
+
+    def post(
+        self,
+        request: HttpRequest,
+        *args,
+        **kwargs
+    ) -> HttpResponseRedirect:
+        newspaper = get_object_or_404(Newspaper, pk=kwargs["pk"])
+        redactor = request.user
+
+        if redactor in newspaper.publishers.all():
+            newspaper.publishers.remove(redactor.id)
+        else:
+            newspaper.publishers.add(redactor.id)
+
+        return HttpResponseRedirect(
+            reverse("editor:newspaper-detail", args=[kwargs["pk"]])
+        )
 
 
 class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
