@@ -6,6 +6,7 @@ from editor.models import Topic
 
 
 TOPIC_URL = reverse("editor:topic-list")
+NEWSPAPER_LIST_URL = reverse("editor:newspaper-list")
 
 
 class PublicTopicTests(TestCase):
@@ -56,3 +57,10 @@ class PrivateTopicTests(TestCase):
         Topic.objects.create(name="Sport")
         self.client.post(reverse("editor:topic-delete", kwargs={"pk": 1}))
         self.assertEqual(Topic.objects.count(), 0)
+
+
+class PublicNewspaperTests(TestCase):
+
+    def test_newspaper_list_login_required(self) -> None:
+        response = self.client.get(NEWSPAPER_LIST_URL)
+        self.assertNotEqual(response.status_code, 200)
