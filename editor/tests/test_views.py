@@ -43,3 +43,11 @@ class PrivateTopicTests(TestCase):
             data={"name": "TEST"}
         )
         self.assertEqual(Topic.objects.get(pk=1).name, "TEST")
+
+    def test_update_topic(self) -> None:
+        Topic.objects.create(name="Politics")
+        self.client.post(
+            reverse("editor:topic-update", kwargs={"pk": 1}),
+            data={"name": "IT"}
+        )
+        self.assertEqual(Topic.objects.get(pk=1).name, "IT")
