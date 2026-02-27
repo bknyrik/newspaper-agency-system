@@ -64,3 +64,7 @@ class PublicNewspaperTests(TestCase):
     def test_newspaper_list_login_required(self) -> None:
         response = self.client.get(NEWSPAPER_LIST_URL)
         self.assertNotEqual(response.status_code, 200)
+
+    def test_newspaper_detail_login_required(self) -> None:
+        response = self.client.get(reverse("editor:newspaper-detail", kwargs={"pk": 1}))
+        self.assertNotEqual(response.status_code, 200)
