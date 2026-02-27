@@ -36,3 +36,10 @@ class PrivateTopicTests(TestCase):
 
         self.assertEqual(tuple(topics), tuple(response.context["topic_list"]))
         self.assertTemplateUsed(response, "editor/topic_list.html")
+
+    def test_create_topic(self) -> None:
+        self.client.post(
+            reverse("editor:topic-create"),
+            data={"name": "TEST"}
+        )
+        self.assertEqual(Topic.objects.get(pk=1).name, "TEST")
