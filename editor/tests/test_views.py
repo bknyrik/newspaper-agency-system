@@ -7,6 +7,7 @@ from editor.models import Topic
 
 TOPIC_URL = reverse("editor:topic-list")
 NEWSPAPER_LIST_URL = reverse("editor:newspaper-list")
+NEWSPAPER_DETAIL_URL = reverse("editor:newspaper-detail", kwargs={"pk": 1})
 
 
 class PublicTopicTests(TestCase):
@@ -66,5 +67,5 @@ class PublicNewspaperTests(TestCase):
         self.assertNotEqual(response.status_code, 200)
 
     def test_newspaper_detail_login_required(self) -> None:
-        response = self.client.get(reverse("editor:newspaper-detail", kwargs={"pk": 1}))
+        response = self.client.get(NEWSPAPER_DETAIL_URL)
         self.assertNotEqual(response.status_code, 200)
