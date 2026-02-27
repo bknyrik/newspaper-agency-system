@@ -2,6 +2,8 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
 
+from editor.models import Topic
+
 
 TOPIC_URL = reverse("editor:topic-list")
 
@@ -21,3 +23,16 @@ class PrivateTopicTests(TestCase):
             password="test12345"
         )
         self.client.force_login(self.user)
+
+    def test_retrieve_topics(self) -> None:
+        topics = Topic.objects.bulk_create(
+            [
+                Topic(name="Economics"),
+                Topic(name="Nature")
+            ]
+        )
+        response = self.client.get(TOPIC_URL)
+        self.assertEqual(response.status_code, 200)
+
+        self.assertEqual(tuple(topics), tuple(response.context["topic_list"]))
+        self.assertTemplateUsed(response, "editor/topic_list.html")
