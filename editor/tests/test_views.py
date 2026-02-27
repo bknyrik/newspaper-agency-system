@@ -51,3 +51,8 @@ class PrivateTopicTests(TestCase):
             data={"name": "IT"}
         )
         self.assertEqual(Topic.objects.get(pk=1).name, "IT")
+
+    def test_delete_topic(self) -> None:
+        Topic.objects.create(name="Sport")
+        self.client.post(reverse("editor:topic-delete", kwargs={"pk": 1}))
+        self.assertEqual(Topic.objects.count(), 0)
