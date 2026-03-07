@@ -101,3 +101,7 @@ class PrivateNewspaperTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(self.newspaper.id, response.context["newspaper"].id)
         self.assertTemplateUsed(response, "editor/newspaper_detail.html")
+
+    def test_delete_authenticated_redactor_from_newspaper(self) -> None:
+        self.client.post(NEWSPAPER_DETAIL_URL)
+        self.assertEqual(self.newspaper.publishers.count(), 0)
