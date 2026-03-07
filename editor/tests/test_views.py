@@ -95,3 +95,9 @@ class PrivateNewspaperTests(TestCase):
             tuple(response.context["newspaper_list"])
         )
         self.assertTemplateUsed(response, "editor/newspaper_list.html")
+
+    def test_get_newspaper(self) -> None:
+        response = self.client.get(NEWSPAPER_DETAIL_URL)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.newspaper.id, response.context["newspaper"].id)
+        self.assertTemplateUsed(response, "editor/newspaper_detail.html")
