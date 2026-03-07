@@ -85,3 +85,13 @@ class PrivateNewspaperTests(TestCase):
         self.newspaper.topics.set([Topic.objects.create(name="TEST_TOPIC")])
         self.newspaper.publishers.set([self.user])
         self.client.force_login(self.user)
+
+    def test_retrieve_newspapers(self) -> None:
+        response = self.client.get(NEWSPAPER_LIST_URL)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            tuple(Newspaper.objects.all()),
+            tuple(response.context["newspaper_list"])
+        )
+        self.assertTemplateUsed(response, "editor/newspaper_list.html")
