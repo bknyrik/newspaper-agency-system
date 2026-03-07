@@ -105,3 +105,12 @@ class PrivateNewspaperTests(TestCase):
     def test_delete_authenticated_redactor_from_newspaper(self) -> None:
         self.client.post(NEWSPAPER_DETAIL_URL)
         self.assertEqual(self.newspaper.publishers.count(), 0)
+
+    def test_assign_authenticated_redactor_to_newspaper(self) -> None:
+        user2 = get_user_model().objects.create_user(
+            username="testuser2",
+            password="testpassword12345"
+        )
+        self.client.force_login(user2)
+        self.client.post(NEWSPAPER_DETAIL_URL)
+        self.assertEqual(self.newspaper.publishers.count(), 2)
