@@ -115,3 +115,23 @@ class PrivateNewspaperTests(TestCase):
         self.client.force_login(user2)
         self.client.post(NEWSPAPER_DETAIL_URL)
         self.assertEqual(self.newspaper.publishers.count(), 2)
+
+    def test_create_newspaper(self) -> None:
+        data = {
+            "title": "Test title 2",
+            "content": "Test content 2",
+            "topics": [self.topic.id],
+            "publishers": [self.user.id]
+        }
+        self.client.post(
+            path=reverse("editor:newspaper-create"),
+            data=data
+        )
+        newspaper = Newspaper.objects.get(pk=2)
+        self.assertEqual(newspaper.title, data["title"]),
+        self.assertEqual(newspaper.content, data["content"]),
+        self.assertEqual(
+            newspaper.publishers.first().id,
+            data["publishers"][0]
+        )
+        self.assertEqual(newspaper.topics.first().id, data["topics"][0])
