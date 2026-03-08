@@ -82,7 +82,8 @@ class PrivateNewspaperTests(TestCase):
             title="Test title",
             content="Test content"
         )
-        self.newspaper.topics.set([Topic.objects.create(name="TEST_TOPIC")])
+        self.topic = Topic.objects.create(name="TEST_TOPIC")
+        self.newspaper.topics.set([self.topic])
         self.newspaper.publishers.set([self.user])
         self.client.force_login(self.user)
 
