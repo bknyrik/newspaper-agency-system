@@ -165,3 +165,13 @@ class PublicRedactorTests(TestCase):
     def test_login_required(self) -> None:
         response = self.client.get(REDACTOR_LIST_URL)
         self.assertNotEqual(response.status_code, 200)
+
+
+class PrivateRedactorTests(TestCase):
+
+    def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            username="testuser",
+            password="testpass12345"
+        )
+        self.client.force_login(user=self.user)
