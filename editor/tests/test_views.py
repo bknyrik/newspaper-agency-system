@@ -183,3 +183,15 @@ class PrivateRedactorTests(TestCase):
             tuple(response.context["redactor_list"])
         )
         self.assertTemplateUsed(response, "editor/redactor_list.html")
+
+    def test_get_redactor(self) -> None:
+        response = self.client.get(
+            reverse("editor:redactor-detail", kwargs={"pk": 1}),
+        )
+        self.assertEqual(
+            self.user.username,
+            response.context["redactor"].username
+        )
+        self.assertTrue(
+            response.context["redactor"].check_password("testpass12345")
+        )
