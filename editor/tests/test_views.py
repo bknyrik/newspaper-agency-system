@@ -158,3 +158,10 @@ class PrivateNewspaperTests(TestCase):
             reverse("editor:newspaper-delete", kwargs={"pk": 1})
         )
         self.assertEqual(Newspaper.objects.count(), 0)
+
+
+class PublicRedactorTests(TestCase):
+
+    def test_login_required(self) -> None:
+        response = self.client.get(REDACTOR_LIST_URL)
+        self.assertNotEqual(response.status_code, 200)
