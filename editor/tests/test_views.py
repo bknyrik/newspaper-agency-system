@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
 
-from editor.models import Topic, Newspaper
+from editor.models import Topic, Newspaper, Redactor
 
 
 TOPIC_URL = reverse("editor:topic-list")
@@ -175,3 +175,11 @@ class PrivateRedactorTests(TestCase):
             password="testpass12345"
         )
         self.client.force_login(user=self.user)
+
+    def test_retrieve_redactors(self) -> None:
+        response = self.client.get(REDACTOR_LIST_URL)
+        self.assertEqual(
+            tuple(Redactor.objects.all()),
+            tuple(response.context["redactor_list"])
+        )
+        self.assertTemplateUsed(response, "editor/redactor_list.html")
