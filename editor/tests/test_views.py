@@ -150,3 +150,9 @@ class PrivateNewspaperTests(TestCase):
         newspaper = Newspaper.objects.get(pk=1)
         self.assertEqual(newspaper.title, data["title"])
         self.assertEqual(newspaper.content, data["content"])
+
+    def test_delete_newspaper(self) -> None:
+        self.client.post(
+            reverse("editor:newspaper-delete", kwargs={"pk": 1})
+        )
+        self.assertEqual(Newspaper.objects.count(), 0)
