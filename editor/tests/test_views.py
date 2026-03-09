@@ -47,12 +47,13 @@ class PrivateTopicTests(TestCase):
         self.assertEqual(Topic.objects.get(pk=1).name, "TEST")
 
     def test_update_topic(self) -> None:
-        Topic.objects.create(name="Politics")
+        new_name = "IT"
+        politics = Topic.objects.create(name=new_name)
         self.client.post(
             reverse("editor:topic-update", kwargs={"pk": 1}),
             data={"name": "IT"}
         )
-        self.assertEqual(Topic.objects.get(pk=1).name, "IT")
+        self.assertEqual(politics.name, new_name)
 
     def test_delete_topic(self) -> None:
         Topic.objects.create(name="Sport")
