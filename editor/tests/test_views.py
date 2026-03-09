@@ -135,3 +135,18 @@ class PrivateNewspaperTests(TestCase):
             data["publishers"][0]
         )
         self.assertEqual(newspaper.topics.first().id, data["topics"][0])
+
+    def test_update_newspaper(self) -> None:
+        data = {
+            "title": "Another title",
+            "content": "Another content",
+            "topics": [self.topic.id],
+            "publishers": [self.user.id]
+        }
+        self.client.post(
+            reverse("editor:newspaper-update", kwargs={"pk": self.newspaper.id}),
+            data=data
+        )
+        newspaper = Newspaper.objects.get(pk=1)
+        self.assertEqual(newspaper.title, data["title"])
+        self.assertEqual(newspaper.content, data["content"])
