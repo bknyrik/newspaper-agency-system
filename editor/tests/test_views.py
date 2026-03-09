@@ -8,6 +8,7 @@ from editor.models import Topic, Newspaper
 TOPIC_URL = reverse("editor:topic-list")
 NEWSPAPER_LIST_URL = reverse("editor:newspaper-list")
 NEWSPAPER_DETAIL_URL = reverse("editor:newspaper-detail", kwargs={"pk": 1})
+REDACTOR_LIST_URL = reverse("editor:redactor-list")
 
 
 class PublicTopicTests(TestCase):
