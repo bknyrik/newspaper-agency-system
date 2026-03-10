@@ -217,3 +217,21 @@ class PrivateRedactorTests(TestCase):
         self.assertEqual(user.email, data["email"])
         self.assertEqual(user.years_of_experience, data["years_of_experience"])
         self.assertTrue(user.check_password(data["password"]))
+
+    def test_update_redactor(self) -> None:
+        data = {
+            "username": "testuser1",
+            "first_name": "test first name",
+            "last_name": "test last name",
+            "email": "test@mail.com",
+            "years_of_experience": 10,
+            "password": "testpassword123"
+        }
+        self.client.post(
+            path=reverse("editor:redactor-update", kwargs={"pk": 1}),
+            data=data
+        )
+        user = Redactor.objects.first()
+        user.set_password(data["password"])
+        self.assertEqual(user.username, data["username"])
+        self.assertTrue(user.check_password(data["password"]))
