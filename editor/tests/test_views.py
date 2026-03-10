@@ -5,7 +5,7 @@ from django.shortcuts import reverse
 from editor.models import Topic, Newspaper, Redactor
 
 
-TOPIC_URL = reverse("editor:topic-list")
+TOPIC_LIST_URL = reverse("editor:topic-list")
 NEWSPAPER_LIST_URL = reverse("editor:newspaper-list")
 NEWSPAPER_DETAIL_URL = reverse("editor:newspaper-detail", kwargs={"pk": 1})
 REDACTOR_LIST_URL = reverse("editor:redactor-list")
@@ -14,7 +14,7 @@ REDACTOR_LIST_URL = reverse("editor:redactor-list")
 class PublicTopicTests(TestCase):
 
     def test_login_required(self) -> None:
-        response = self.client.get(TOPIC_URL)
+        response = self.client.get(TOPIC_LIST_URL)
         self.assertNotEqual(response.status_code, 200)
 
 
@@ -34,7 +34,7 @@ class PrivateTopicTests(TestCase):
                 Topic(name="Nature")
             ]
         )
-        response = self.client.get(TOPIC_URL)
+        response = self.client.get(TOPIC_LIST_URL)
         self.assertEqual(response.status_code, 200)
 
         self.assertEqual(tuple(topics), tuple(response.context["topic_list"]))
