@@ -235,3 +235,7 @@ class PrivateRedactorTests(TestCase):
         user.set_password(data["password"])
         self.assertEqual(user.username, data["username"])
         self.assertTrue(user.check_password(data["password"]))
+
+    def test_delete_redactor(self) -> None:
+        self.client.post(reverse("editor:redactor-delete", kwargs={"pk": 1}))
+        self.assertEqual(Redactor.objects.count(), 0)
