@@ -101,7 +101,14 @@ class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
 
 class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
     model = Redactor
-    fields = "__all__"
+    fields = (
+        "username",
+        "first_name",
+        "last_name",
+        "password",
+        "email",
+        "years_of_experience",
+    )
 
     def get_success_url(self) -> str:
         return reverse("editor:redactor-detail", args=[self.object.id])
@@ -109,7 +116,14 @@ class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
 
 class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
-    fields = "__all__"
+    fields = (
+        "username",
+        "first_name",
+        "last_name",
+        "password",
+        "email",
+        "years_of_experience",
+    )
 
     def get_success_url(self) -> str:
         return reverse("editor:redactor-detail", args=[self.object.id])
