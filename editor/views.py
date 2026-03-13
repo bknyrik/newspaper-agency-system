@@ -1,3 +1,4 @@
+from django.db.models import QuerySet
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
@@ -5,7 +6,12 @@ from django.shortcuts import render, reverse, get_object_or_404
 from django.urls import reverse_lazy
 
 from editor.models import Topic, Newspaper, Redactor
-from editor.forms import TopicForm, RedactorCreationForm, RedactorUpdateForm
+from editor.forms import (
+    TopicForm,
+    RedactorCreationForm,
+    RedactorUpdateForm,
+    TopicSearchForm
+)
 
 
 class IndexView(LoginRequiredMixin, generic.View):
@@ -22,6 +28,21 @@ class IndexView(LoginRequiredMixin, generic.View):
 class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     paginate_by = 10
+
+    def get_context_data(self, *, object_list = ..., **kwargs) -> dict:
+        context = super(TopicListView, self).get_context_data(**kwargs)
+        context["search_form"] = TopicSearchForm(self.request.GET)
+        return context
+
+    def get_queryset(self) -> QuerySet[Topic]:
+        queryset = Topic.objects.all()
+        name = self.request.GET.get("name", "")
+        search_form = TopicSearchForm(self.request.GET)
+
+        if search_form.is_valid():
+            queryset = queryset.filter(name__icontains=name)
+
+        return queryset
 
 
 class TopicCreateView(LoginRequiredMixin, generic.CreateView):
