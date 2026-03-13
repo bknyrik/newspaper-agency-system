@@ -5,6 +5,7 @@ from django.shortcuts import render, reverse, get_object_or_404
 from django.urls import reverse_lazy
 
 from editor.models import Topic, Newspaper, Redactor
+from editor.forms import TopicForm
 
 
 class IndexView(LoginRequiredMixin, generic.View):
@@ -25,13 +26,13 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
 
 class TopicCreateView(LoginRequiredMixin, generic.CreateView):
     model = Topic
-    fields = "__all__"
+    form_class = TopicForm
     success_url = reverse_lazy("editor:topic-list")
 
 
 class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Topic
-    fields = "__all__"
+    form_class = TopicForm
     success_url = reverse_lazy("editor:topic-list")
 
 
@@ -101,14 +102,7 @@ class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
 
 class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
     model = Redactor
-    fields = (
-        "username",
-        "first_name",
-        "last_name",
-        "password",
-        "email",
-        "years_of_experience",
-    )
+    fields = "__all__"
 
     def get_success_url(self) -> str:
         return reverse("editor:redactor-detail", args=[self.object.id])
