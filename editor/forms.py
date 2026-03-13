@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 from editor.models import Topic, Newspaper, Redactor
 
@@ -55,4 +55,35 @@ class RedactorCreationForm(UserCreationForm):
 
         self.save_m2m()
         redactor.newspapers.set(self.cleaned_data["newspapers"])
+        return redactor
+
+
+class RedactorUpdateForm(forms.ModelForm):
+
+    years_of_experience = forms.IntegerField(min_value=1, required=False)
+    newspapers = forms.ModelMultipleChoiceField(
+        queryset=Newspaper.objects.prefetch_related("topics"),
+        widget=forms.SelectMultiple,
+        required=False
+    )
+
+    class Meta:
+        model = Redactor
+        fields = (
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "years_of_experience",
+            "newspapers"
+        )
+
+    def save(self, commit: bool = ...) -> Redactor:
+        redactor = super().save(commit=False)
+
+        if commit:
+            redactor.save()
+
+        self.save_m2m()
+        redactor.newspapers.set([self.cleaned_data["newspapers"]])
         return redactor
