@@ -5,7 +5,7 @@ from django.shortcuts import render, reverse, get_object_or_404
 from django.urls import reverse_lazy
 
 from editor.models import Topic, Newspaper, Redactor
-from editor.forms import TopicForm, RedactorCreationForm
+from editor.forms import TopicForm, RedactorCreationForm, RedactorUpdateForm
 
 
 class IndexView(LoginRequiredMixin, generic.View):
@@ -110,14 +110,7 @@ class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
 
 class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
-    fields = (
-        "username",
-        "first_name",
-        "last_name",
-        "password",
-        "email",
-        "years_of_experience",
-    )
+    form_class = RedactorUpdateForm
 
     def get_success_url(self) -> str:
         return reverse("editor:redactor-detail", args=[self.object.id])
