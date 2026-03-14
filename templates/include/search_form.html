@@ -1,6 +1,6 @@
-<form action="" method="get">
+<form action="#" method="get">
     {% csrf_token %}
-    {{ search_form }}
-    <br>
-    <input type="submit" value="Submit">
+    {{ search_form.as_p }}
+    <input type="submit" value="Search">
+    <input type="reset" value="Reset">
 </form>
