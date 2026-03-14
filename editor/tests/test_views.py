@@ -167,6 +167,10 @@ class PublicRedactorTests(TestCase):
         response = self.client.get(REDACTOR_LIST_URL)
         self.assertNotEqual(response.status_code, 200)
 
+    def test_redactor_detail_login_required(self) -> None:
+        response = self.client.get(REDACTOR_DETAIL_URL)
+        self.assertNotEqual(response.status_code, 200)
+
 
 class PrivateRedactorTests(TestCase):
 
