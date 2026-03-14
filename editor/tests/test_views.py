@@ -163,7 +163,7 @@ class PrivateNewspaperTests(TestCase):
 
 class PublicRedactorTests(TestCase):
 
-    def test_login_required(self) -> None:
+    def test_redactor_list_login_required(self) -> None:
         response = self.client.get(REDACTOR_LIST_URL)
         self.assertNotEqual(response.status_code, 200)
 
