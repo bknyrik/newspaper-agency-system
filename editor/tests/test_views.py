@@ -9,6 +9,7 @@ TOPIC_LIST_URL = reverse("editor:topic-list")
 NEWSPAPER_LIST_URL = reverse("editor:newspaper-list")
 NEWSPAPER_DETAIL_URL = reverse("editor:newspaper-detail", kwargs={"pk": 1})
 REDACTOR_LIST_URL = reverse("editor:redactor-list")
+REDACTOR_DETAIL_URL = reverse("editor:redactor-detail", kwargs={"pk": 1})
 
 
 class PublicTopicTests(TestCase):
