@@ -10,7 +10,8 @@ from editor.forms import (
     TopicForm,
     RedactorCreationForm,
     RedactorUpdateForm,
-    TopicSearchForm
+    TopicSearchForm,
+    NewspaperSearchForm
 )
 
 
@@ -66,6 +67,33 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
     model = Newspaper
     queryset = Newspaper.objects.prefetch_related("topics")
     paginate_by = 10
+
+    def get_context_data(
+        self,
+        *,
+        object_list = ...,
+        **kwargs
+    ) -> dict:
+        context = super().get_context_data(**kwargs)
+        context["search_form"] = NewspaperSearchForm(self.request.GET)
+        return context
+
+    def get_queryset(self) -> QuerySet[Newspaper]:
+        queryset = Newspaper.objects.prefetch_related("topics")
+        title = self.request.GET.get("title", "")
+        topics_ids = tuple(
+            int(topic_id)
+            for topic_id in self.request.GET.getlist("topics", "")
+        )
+        search_form = NewspaperSearchForm(self.request.GET)
+
+        if search_form.is_valid():
+            queryset = queryset.filter(title__icontains=title)
+
+            if topics_ids:
+                queryset = queryset.filter(topics__id__in=topics_ids)
+
+        return queryset
 
 
 class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
