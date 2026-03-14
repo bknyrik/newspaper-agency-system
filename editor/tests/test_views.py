@@ -203,20 +203,20 @@ class PrivateRedactorTests(TestCase):
             "last_name": "test last name",
             "years_of_experience": 10,
             "email": "test@mail.com",
-            "password": "testpass1234"
+            "password1": "testpass1234",
+            "password2": "testpass1234"
         }
         self.client.post(
             path=reverse("editor:redactor-create"),
             data=data
         )
         user = Redactor.objects.get(username=data["username"])
-        user.set_password(data["password"])
 
         self.assertEqual(user.first_name, data["first_name"])
         self.assertEqual(user.last_name, data["last_name"])
         self.assertEqual(user.email, data["email"])
         self.assertEqual(user.years_of_experience, data["years_of_experience"])
-        self.assertTrue(user.check_password(data["password"]))
+        self.assertTrue(user.check_password(data["password1"]))
 
     def test_update_redactor(self) -> None:
         data = {
@@ -225,16 +225,17 @@ class PrivateRedactorTests(TestCase):
             "last_name": "test last name",
             "email": "test@mail.com",
             "years_of_experience": 10,
-            "password": "testpassword123"
         }
         self.client.post(
             path=reverse("editor:redactor-update", kwargs={"pk": 1}),
             data=data
         )
-        user = Redactor.objects.first()
-        user.set_password(data["password"])
+        user = Redactor.objects.get(pk=1)
         self.assertEqual(user.username, data["username"])
-        self.assertTrue(user.check_password(data["password"]))
+        self.assertEqual(user.first_name, data["first_name"])
+        self.assertEqual(user.last_name, data["last_name"])
+        self.assertEqual(user.email, data["email"])
+        self.assertEqual(user.years_of_experience, data["years_of_experience"])
 
     def test_delete_redactor(self) -> None:
         self.client.post(reverse("editor:redactor-delete", kwargs={"pk": 1}))
