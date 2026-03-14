@@ -105,7 +105,7 @@ class RedactorUpdateForm(forms.ModelForm):
             redactor.save()
 
         self.save_m2m()
-        redactor.newspapers.set([self.cleaned_data["newspapers"]])
+        redactor.newspapers.set(self.cleaned_data["newspapers"])
         return redactor
 
 
