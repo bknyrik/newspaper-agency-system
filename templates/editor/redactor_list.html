@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Redactor list</h1>
+  {% include "include/search_form.html" %}
+  <br>
   <a href="{% url "editor:redactor-create" %}">Create</a>
   {% if redactor_list %}
     <table>
