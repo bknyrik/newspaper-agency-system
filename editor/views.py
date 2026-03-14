@@ -11,7 +11,8 @@ from editor.forms import (
     RedactorCreationForm,
     RedactorUpdateForm,
     TopicSearchForm,
-    NewspaperSearchForm
+    NewspaperSearchForm,
+    RedactorSearchForm
 )
 
 
@@ -142,6 +143,31 @@ class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
 class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     paginate_by = 10
+
+    def get_context_data(
+        self,
+        *,
+        object_list = ...,
+        **kwargs
+    ) -> dict:
+        context = super(RedactorListView, self).get_context_data(**kwargs)
+        context["search_form"] = RedactorSearchForm(initial={"username": ""})
+        return context
+
+    def get_queryset(self) -> QuerySet[Redactor]:
+        queryset = Redactor.objects.prefetch_related("newspapers")
+        username = self.request.GET.get("username", "")
+        years_of_experience = self.request.GET.get("years_of_experience", None)
+        search_form = RedactorSearchForm(self.request.GET)
+
+        if search_form.is_valid():
+            if username:
+                queryset = queryset.filter(username__icontains=username)
+
+            if years_of_experience:
+                queryset = queryset.filter(years_of_experience=years_of_experience)
+
+        return queryset
 
 
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
