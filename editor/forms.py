@@ -36,6 +36,20 @@ class TopicSearchForm(forms.Form):
     )
 
 
+class NewspaperSearchForm(forms.Form):
+    title = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by title"})
+    )
+    topics = forms.ModelMultipleChoiceField(
+        queryset=Topic.objects.all(),
+        required=False,
+        label="Search by topic(s)",
+    )
+
+
 class RedactorCreationForm(UserCreationForm):
 
     years_of_experience = forms.IntegerField(min_value=1, required=False)
