@@ -8,7 +8,6 @@ class TopicForm(forms.ModelForm):
 
     newspapers = forms.ModelMultipleChoiceField(
         queryset=Newspaper.objects.prefetch_related("topics"),
-        widget=forms.SelectMultiple,
         required=False,
     )
 
@@ -55,7 +54,6 @@ class RedactorCreationForm(UserCreationForm):
     years_of_experience = forms.IntegerField(min_value=1, required=False)
     newspapers = forms.ModelMultipleChoiceField(
         queryset=Newspaper.objects.prefetch_related("topics"),
-        widget=forms.SelectMultiple,
         required=False
     )
 
@@ -86,7 +84,6 @@ class RedactorUpdateForm(forms.ModelForm):
     years_of_experience = forms.IntegerField(min_value=1, required=False)
     newspapers = forms.ModelMultipleChoiceField(
         queryset=Newspaper.objects.prefetch_related("topics"),
-        widget=forms.SelectMultiple,
         required=False
     )
 
