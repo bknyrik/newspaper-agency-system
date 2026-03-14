@@ -107,3 +107,22 @@ class RedactorUpdateForm(forms.ModelForm):
         self.save_m2m()
         redactor.newspapers.set([self.cleaned_data["newspapers"]])
         return redactor
+
+
+class RedactorSearchForm(forms.Form):
+    username = forms.CharField(
+        max_length=255,
+        label="",
+        required=False,
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by username"}
+        )
+    )
+    years_of_experience = forms.IntegerField(
+        min_value=1,
+        required=False,
+        label="",
+        widget=forms.NumberInput(
+            attrs={"placeholder": "Search by years of experience"}
+        )
+    )
