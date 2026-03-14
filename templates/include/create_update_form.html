@@ -1,7 +1,7 @@
 <h1>{{ object|yesno:"Update,Create" }} {{ type }}</h1>
 <form action="" method="post">
   {% csrf_token %}
-  {{ form }}
+  {{ form.as_p }}
   <br>
   <input type="submit" value="Submit">
 </form>
