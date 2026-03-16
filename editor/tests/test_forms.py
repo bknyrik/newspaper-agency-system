@@ -37,3 +37,32 @@ class FormsTests(TestCase):
         topic_search_form = TopicSearchForm(data=form_data)
         self.assertTrue(topic_search_form.is_valid())
         self.assertEqual(topic_search_form.cleaned_data, form_data)
+
+    def test_redactor_creation_form_with_years_of_experience_newspapers_is_valid(
+        self
+    ) -> None:
+        form_data = {
+            "username": "testuser",
+            "password1": "testpass12345",
+            "password2": "testpass12345",
+            "first_name": "Test first",
+            "last_name": "Test last",
+            "email": "test@mail.com",
+            "years_of_experience": 10,
+            "newspapers": (
+                Newspaper.objects.create(
+                    title="Test title",
+                    content="Test content",
+                ),
+            )
+        }
+        rc_form = RedactorCreationForm(data=form_data)
+        self.assertTrue(rc_form.is_valid())
+        self.assertEqual(
+            rc_form.cleaned_data["years_of_experience"],
+            form_data["years_of_experience"]
+        )
+        self.assertTrue(
+            tuple(rc_form.cleaned_data["newspapers"]),
+            form_data["newspapers"]
+        )
