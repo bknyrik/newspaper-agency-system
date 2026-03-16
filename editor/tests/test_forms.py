@@ -1,6 +1,10 @@
 from django.test import TestCase
 
-from editor.forms import TopicForm
+from editor.forms import (
+    TopicForm,
+    TopicSearchForm,
+    RedactorCreationForm
+)
 from editor.models import Newspaper
 
 
@@ -27,3 +31,9 @@ class FormsTests(TestCase):
             tuple(topic_form.cleaned_data["newspapers"]),
             form_data["newspapers"]
         )
+
+    def test_topic_search_form_with_name_is_valid(self) -> None:
+        form_data = {"name": "test"}
+        topic_search_form = TopicSearchForm(data=form_data)
+        self.assertTrue(topic_search_form.is_valid())
+        self.assertEqual(topic_search_form.cleaned_data, form_data)
