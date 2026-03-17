@@ -14,19 +14,22 @@ from editor.models import Newspaper, Topic
 
 class FormsTests(TestCase):
 
+    def setUp(self) -> None:
+        self.newspapers = (
+            Newspaper.objects.create(
+                title="Test title",
+                content="Test content"
+            ),
+            Newspaper.objects.create(
+                title="Test title 2",
+                content="Test content 2"
+            )
+        )
+
     def test_topic_form_with_name_newspapers_is_valid(self) -> None:
         form_data = {
             "name": "Test topic",
-            "newspapers": (
-                Newspaper.objects.create(
-                    title="Test title",
-                    content="Test content"
-                ),
-                Newspaper.objects.create(
-                    title="Test title 2",
-                    content="Test content 2"
-                )
-            )
+            "newspapers": self.newspapers
         }
         topic_form = TopicForm(data=form_data)
         self.assertTrue(topic_form.is_valid())
@@ -53,12 +56,7 @@ class FormsTests(TestCase):
             "last_name": "Test last",
             "email": "test@mail.com",
             "years_of_experience": 10,
-            "newspapers": (
-                Newspaper.objects.create(
-                    title="Test title",
-                    content="Test content",
-                ),
-            )
+            "newspapers": self.newspapers
         }
         rc_form = RedactorCreationForm(data=form_data)
         self.assertTrue(rc_form.is_valid())
@@ -84,12 +82,7 @@ class FormsTests(TestCase):
             "last_name": "Test last",
             "email": "test@mail.com",
             "years_of_experience": 10,
-            "newspapers": (
-                Newspaper.objects.create(
-                    title="Test title",
-                    content="Test content"
-                ),
-            )
+            "newspapers": self.newspapers
         }
         redactor_form = RedactorUpdateForm(data=form_data, instance=redactor)
         self.assertTrue(redactor_form.is_valid())
