@@ -4,10 +4,11 @@ from django.contrib.auth import get_user_model
 from editor.forms import (
     TopicForm,
     TopicSearchForm,
+    NewspaperSearchForm,
     RedactorCreationForm,
     RedactorUpdateForm
 )
-from editor.models import Newspaper
+from editor.models import Newspaper, Topic
 
 
 class FormsTests(TestCase):
@@ -98,4 +99,19 @@ class FormsTests(TestCase):
         self.assertEqual(
             tuple(redactor_form.cleaned_data["newspapers"]),
             form_data["newspapers"]
+        )
+
+    def test_newspaper_search_form_is_valid(self) -> None:
+        form_data = {
+            "title": "Test",
+            "topics": (
+                Topic.objects.create(name="Test topic"),
+            )
+        }
+        ns_form = NewspaperSearchForm(data=form_data)
+        self.assertTrue(ns_form.is_valid())
+        self.assertEqual(ns_form.cleaned_data["title"], form_data["title"])
+        self.assertEqual(
+            tuple(ns_form.cleaned_data["topics"]),
+            form_data["topics"]
         )
