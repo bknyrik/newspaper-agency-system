@@ -1,9 +1,11 @@
 from django.test import TestCase
+from django.contrib.auth import get_user_model
 
 from editor.forms import (
     TopicForm,
     TopicSearchForm,
-    RedactorCreationForm
+    RedactorCreationForm,
+    RedactorUpdateForm
 )
 from editor.models import Newspaper
 
@@ -64,5 +66,36 @@ class FormsTests(TestCase):
         )
         self.assertTrue(
             tuple(rc_form.cleaned_data["newspapers"]),
+            form_data["newspapers"]
+        )
+
+    def test_redactor_form_with_years_of_experience_newspapers_is_valid(
+        self
+    ) -> None:
+        redactor = get_user_model().objects.create_user(
+            username="testuser",
+            password="testpass12345"
+        )
+        form_data = {
+            "username": "testuser",
+            "first_name": "Test first",
+            "last_name": "Test last",
+            "email": "test@mail.com",
+            "years_of_experience": 10,
+            "newspapers": (
+                Newspaper.objects.create(
+                    title="Test title",
+                    content="Test content"
+                ),
+            )
+        }
+        redactor_form = RedactorUpdateForm(data=form_data, instance=redactor)
+        self.assertTrue(redactor_form.is_valid())
+        self.assertEqual(
+            redactor_form.cleaned_data["years_of_experience"],
+            form_data["years_of_experience"]
+        )
+        self.assertEqual(
+            tuple(redactor_form.cleaned_data["newspapers"]),
             form_data["newspapers"]
         )
