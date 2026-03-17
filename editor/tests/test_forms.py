@@ -6,7 +6,8 @@ from editor.forms import (
     TopicSearchForm,
     NewspaperSearchForm,
     RedactorCreationForm,
-    RedactorUpdateForm
+    RedactorUpdateForm,
+    RedactorSearchForm,
 )
 from editor.models import Newspaper, Topic
 
@@ -100,6 +101,16 @@ class FormsTests(TestCase):
             tuple(redactor_form.cleaned_data["newspapers"]),
             form_data["newspapers"]
         )
+
+    def test_redactor_search_form_is_valid(self) -> None:
+        form_data = {
+            "username": "testuser",
+            "years_of_experience": 5
+        }
+        rs_form = RedactorSearchForm(data=form_data)
+        self.assertTrue(rs_form.is_valid())
+        self.assertEqual(rs_form.cleaned_data, form_data)
+
 
     def test_newspaper_search_form_is_valid(self) -> None:
         form_data = {
