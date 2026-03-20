@@ -34,7 +34,7 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     paginate_by = 10
 
-    def get_context_data(self, *, object_list = ..., **kwargs) -> dict:
+    def get_context_data(self, *, object_list: list = ..., **kwargs) -> dict:
         context = super(TopicListView, self).get_context_data(**kwargs)
         context["search_form"] = TopicSearchForm(self.request.GET)
         return context
@@ -72,12 +72,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
     queryset = Newspaper.objects.prefetch_related("topics")
     paginate_by = 10
 
-    def get_context_data(
-        self,
-        *,
-        object_list = ...,
-        **kwargs
-    ) -> dict:
+    def get_context_data(self, *, object_list: list = ..., **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
         context["search_form"] = NewspaperSearchForm(self.request.GET)
         return context
@@ -95,7 +90,9 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
             queryset = queryset.filter(title__icontains=title)
 
             if topics_ids:
-                queryset = queryset.filter(topics__id__in=topics_ids).distinct()
+                queryset = queryset.filter(
+                    topics__id__in=topics_ids
+                ).distinct()
 
         return queryset
 
@@ -147,12 +144,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     paginate_by = 10
 
-    def get_context_data(
-        self,
-        *,
-        object_list = ...,
-        **kwargs
-    ) -> dict:
+    def get_context_data(self, *, object_list: list = ..., **kwargs) -> dict:
         context = super(RedactorListView, self).get_context_data(**kwargs)
         context["search_form"] = RedactorSearchForm(self.request.GET)
         return context
@@ -160,7 +152,10 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self) -> QuerySet[Redactor]:
         queryset = Redactor.objects.prefetch_related("newspapers")
         username = self.request.GET.get("username", "")
-        years_of_experience = self.request.GET.get("years_of_experience", None)
+        years_of_experience = self.request.GET.get(
+            "years_of_experience",
+            None
+        )
         search_form = RedactorSearchForm(self.request.GET)
 
         if search_form.is_valid():
@@ -168,7 +163,9 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
                 queryset = queryset.filter(username__icontains=username)
 
             if years_of_experience:
-                queryset = queryset.filter(years_of_experience=years_of_experience)
+                queryset = queryset.filter(
+                    years_of_experience=years_of_experience
+                )
 
         return queryset
 
