@@ -1,8 +1,8 @@
 from django.db.models import QuerySet
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, reverse, get_object_or_404
+from django.http import HttpRequest, HttpResponseRedirect
+from django.shortcuts import reverse, get_object_or_404
 from django.urls import reverse_lazy
 
 from editor.models import Topic, Newspaper, Redactor
@@ -19,6 +19,15 @@ from editor.forms import (
 class IndexView(LoginRequiredMixin, generic.TemplateView):
 
     template_name = "editor/index.html"
+
+    def get_context_data(self, **kwargs) -> dict:
+        context = super().get_context_data(**kwargs)
+        context |= {
+            "count_topics": Topic.objects.count(),
+            "count_newspapers": Newspaper.objects.count(),
+            "count_redactors": Redactor.objects.count()
+        }
+        return context
 
 
 class TopicListView(LoginRequiredMixin, generic.ListView):
