@@ -92,7 +92,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
             queryset = queryset.filter(title__icontains=title)
 
             if topics_ids:
-                queryset = queryset.filter(topics__id__in=topics_ids)
+                queryset = queryset.filter(topics__id__in=topics_ids).distinct()
 
         return queryset
 
