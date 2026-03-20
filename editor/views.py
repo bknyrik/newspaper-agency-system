@@ -151,7 +151,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
         **kwargs
     ) -> dict:
         context = super(RedactorListView, self).get_context_data(**kwargs)
-        context["search_form"] = RedactorSearchForm(initial={"username": ""})
+        context["search_form"] = RedactorSearchForm(self.request.GET)
         return context
 
     def get_queryset(self) -> QuerySet[Redactor]:
