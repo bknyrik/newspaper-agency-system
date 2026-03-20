@@ -16,7 +16,7 @@ from editor.forms import (
 )
 
 
-class IndexView(LoginRequiredMixin, generic.View):
+class IndexView(LoginRequiredMixin, generic.TemplateView):
 
     def get(self, request: HttpRequest) -> HttpResponse:
         context = {
