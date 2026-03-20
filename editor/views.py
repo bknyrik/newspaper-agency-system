@@ -18,13 +18,7 @@ from editor.forms import (
 
 class IndexView(LoginRequiredMixin, generic.TemplateView):
 
-    def get(self, request: HttpRequest) -> HttpResponse:
-        context = {
-            "count_topics": Topic.objects.count(),
-            "count_newspapers": Newspaper.objects.count(),
-            "count_redactors": Redactor.objects.count()
-        }
-        return render(request, "editor/index.html", context)
+    template_name = "editor/index.html"
 
 
 class TopicListView(LoginRequiredMixin, generic.ListView):
