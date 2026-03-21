@@ -1,16 +1,16 @@
 <nav>
-    <a href="{% url "editor:index" %}">Home</a>
-    <a href="{% url "editor:topic-list" %}">Topics</a>
-    <a href="{% url "editor:newspaper-list" %}">Newspapers</a>
-    <a href="{% url "editor:redactor-list" %}">Redactors</a>
+  <a href="{% url "editor:index" %}">Home</a>
+  <a href="{% url "editor:topic-list" %}">Topics</a>
+  <a href="{% url "editor:newspaper-list" %}">Newspapers</a>
+  <a href="{% url "editor:redactor-list" %}">Redactors</a>
 
-    {% if user.is_authenticated %}
-        <a href="{% url "editor:redactor-detail" pk=user.id %}">{{ user.username }}</a>
-        <form action="{% url "logout" %}" method="post">
-            {% csrf_token %}
-            <button>Log out</button>
-        </form>
-    {% else %}
-        <a href="{% url "login" %}">Log in</a>
-    {% endif %}
+  {% if user.is_authenticated %}
+    <a href="{% url "editor:redactor-detail" pk=user.id %}">{{ user.username }}</a>
+    <form action="{% url "logout" %}" method="post">
+      {% csrf_token %}
+      <button>Log out</button>
+    </form>
+  {% else %}
+    <a href="{% url "login" %}">Log in</a>
+  {% endif %}
 </nav>
