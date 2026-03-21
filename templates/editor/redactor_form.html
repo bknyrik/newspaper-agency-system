@@ -3,6 +3,6 @@
   {% if object %}
     {% include "include/create_update_form.html" with type="redactor" url_name="editor:redactor-detail" pk=redactor.id %}
   {% else %}
-    {% include "include/create_update_form.html" with type="redactor" url_name="editor:redactor-list"%}
+    {% include "include/create_update_form.html" with type="redactor" url_name="editor:redactor-list" %}
   {% endif %}
 {% endblock %}
