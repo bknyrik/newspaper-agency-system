@@ -16,8 +16,8 @@
     <h3>Newspapers</h3>
     {% for newspaper in redactor.newspapers.all %}
       <p>{{ newspaper }}</p>
-      {% empty %}
-        <p>There are no newspapers from this redactor.</p>
+    {% empty %}
+      <p>There are no newspapers from this redactor.</p>
     {% endfor %}
   </section>
   <br>
