@@ -8,11 +8,9 @@
   {% endblock %}
 </head>
 <body>
-<header>
-  {% block header %}
-    {% include "include/navigation.html" %}
-  {% endblock %}
-</header>
+{% block header %}
+  {% include "include/navigation.html" %}
+{% endblock %}
 {% block content %}
 {% endblock %}
 </body>
