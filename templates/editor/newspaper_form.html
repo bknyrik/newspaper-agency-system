@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
   {% if object %}
-    {% include "include/create_update_form.html" with type="newspaper" url_name="editor:newspaper-detail" pk=newspaper.id %}
+    {% include "includes/create_update_form.html" with type="newspaper" url_name="editor:newspaper-detail" pk=newspaper.id %}
   {% else %}
-    {% include "include/create_update_form.html" with type="newspaper" url_name="editor:newspaper-list" %}
+    {% include "includes/create_update_form.html" with type="newspaper" url_name="editor:newspaper-list" %}
   {% endif %}
 {% endblock %}

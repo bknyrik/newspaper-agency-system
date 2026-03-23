@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Redactor list</h1>
-  {% include "include/search_form.html" %}
+  {% include "includes/search_form.html" %}
   <br>
   <a href="{% url "editor:redactor-create" %}">Create</a>
   {% if redactor_list %}
@@ -26,5 +26,5 @@
   {% else %}
     <p>There are no redactors in the system.</p>
   {% endif %}
-  {% include "include/pagination.html" %}
+  {% include "includes/pagination.html" %}
 {% endblock %}

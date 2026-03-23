@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>Newspaper list</h1>
-  {% include "include/search_form.html" %}
+  {% include "includes/search_form.html" %}
   <br>
   <a href="{% url "editor:newspaper-create" %}">Create</a>
   {% if newspaper_list %}
@@ -24,5 +24,5 @@
   {% else %}
     <p>There are no newspapers in the system.</p>
   {% endif %}
-  {% include "include/pagination.html" %}
+  {% include "includes/pagination.html" %}
 {% endblock %}
