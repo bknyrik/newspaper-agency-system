@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <section class="section-header bg-secondary">
+  <section class="section-sm bg-secondary">
     <div class="container">
       <div class="row align-items-center justify-content-around">
         <div class="col-md-6 col-xl-6 mb-5">
@@ -23,8 +23,8 @@
                 <tr>
                   <td>{{ topic.id }}</td>
                   <td>{{ topic }}</td>
-                  <td><a href="{% url "editor:topic-update" pk=topic.id %}">Update</a></td>
-                  <td><a href="{% url "editor:topic-delete" pk=topic.id %}">Delete</a></td>
+                  <td><a class="btn btn-outline-info" href="{% url "editor:topic-update" pk=topic.id %}">Update</a></td>
+                  <td><a class="btn btn-outline-danger" href="{% url "editor:topic-delete" pk=topic.id %}">Delete</a></td>
                 </tr>
               {% endfor %}
               </tbody>
