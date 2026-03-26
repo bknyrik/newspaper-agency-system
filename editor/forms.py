@@ -66,6 +66,10 @@ class NewspaperForm(forms.ModelForm):
         widget=forms.SelectMultiple(attrs={"class": "form-control"})
     )
 
+    class Meta:
+        model = Newspaper
+        fields = ("title", "content", "topics", "publishers")
+
 
 class NewspaperSearchForm(forms.Form):
     title = forms.CharField(
