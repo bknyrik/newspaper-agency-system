@@ -124,7 +124,10 @@ class RedactorSearchForm(forms.Form):
         label="",
         required=False,
         widget=forms.TextInput(
-            attrs={"placeholder": "Search by username"}
+            attrs={
+                "class": "form-control",
+                "placeholder": "Search by username"
+            }
         )
     )
     years_of_experience = forms.IntegerField(
