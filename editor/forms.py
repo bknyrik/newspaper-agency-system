@@ -6,6 +6,11 @@ from editor.models import Topic, Newspaper, Redactor
 
 class TopicForm(forms.ModelForm):
 
+    name = forms.CharField(
+        max_length=32,
+        required=True,
+        widget=forms.TextInput(attrs={"class": "form-control"})
+    )
     newspapers = forms.ModelMultipleChoiceField(
         queryset=Newspaper.objects.prefetch_related("topics"),
         required=False,
