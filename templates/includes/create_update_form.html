@@ -8,6 +8,7 @@
           {{ form.as_p }}
           <br>
           <input class="btn btn-outline-info" type="submit" value="{{ object|yesno:"Update,Create" }}">
+          <input class="btn btn-outline-info" type="reset" value="Reset">
         </form>
         <br>
         {% if pk %}
