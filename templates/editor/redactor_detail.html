@@ -5,8 +5,8 @@
       <div class="row">
         <div class="col-12">
           <h1 class="display-2 mb-4">Redactor page</h1>
-          <a href="{% url "editor:redactor-update" pk=redactor.id %}">Update</a>
-          <a href="{% url "editor:redactor-delete" pk=redactor.id %}">Delete</a>
+          <a class="btn btn-outline-info" href="{% url "editor:redactor-update" pk=redactor.id %}">Update</a>
+          <a class="btn btn-outline-danger" href="{% url "editor:redactor-delete" pk=redactor.id %}">Delete</a>
           <section>
             <h3>Personal information</h3>
             <p>Username: {{ redactor.username }}</p>
