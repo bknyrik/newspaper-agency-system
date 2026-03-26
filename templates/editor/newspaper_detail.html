@@ -9,14 +9,14 @@
           <a class="btn btn-outline-danger" href="{% url "editor:newspaper-delete" pk=newspaper.id %}">Delete</a>
           <section>
             <h3 class="display-3 mt-3">Information</h3>
-            <p>Title: {{ newspaper.title }}</p>
-            <p>Published date: {{ newspaper.published_date }}</p>
-            <p>Topics: {{ newspaper.topics_str }}</p>
+            <p class="lead">Title: {{ newspaper.title }}</p>
+            <p class="lead">Published date: {{ newspaper.published_date }}</p>
+            <p class="lead">Topics: {{ newspaper.topics_str }}</p>
           </section>
           <hr>
           <section>
             <h3 class="display-3 mt-3">Content</h3>
-            <p>{{ newspaper.content }}</p>
+            <p class="lead">{{ newspaper.content }}</p>
           </section>
           <hr>
           <section>
@@ -30,9 +30,9 @@
               {% endif %}
             </form>
             {% for publisher in newspaper.publishers.all %}
-              <p>{{ publisher }}</p>
+              <p class="lead">{{ publisher }}</p>
             {% empty %}
-              <p>There are no publishers of this newspaper.</p>
+              <p class="lead">There are no publishers of this newspaper.</p>
             {% endfor %}
           </section>
           <br>
