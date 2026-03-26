@@ -11,9 +11,9 @@
         </form>
         <br>
         {% if pk %}
-          <a href="{% url url_name pk=pk %}">Cancel</a>
+          <a class="btn btn-outline-gray-100" href="{% url url_name pk=pk %}">Cancel</a>
         {% else %}
-          <a href="{% url url_name %}">Cancel</a>
+          <a class="btn btn-outline-gray-100" href="{% url url_name %}">Cancel</a>
         {% endif %}
       </div>
     </div>
