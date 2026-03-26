@@ -44,6 +44,29 @@ class TopicSearchForm(forms.Form):
     )
 
 
+class NewspaperForm(forms.ModelForm):
+    title = forms.CharField(
+        max_length=64,
+        required=True,
+        widget=forms.TextInput(attrs={"class": "form-control"})
+    )
+    content = forms.CharField(
+        max_length=2048,
+        required=False,
+        widget=forms.Textarea(attrs={"class": "form-control"})
+    )
+    topics = forms.ModelMultipleChoiceField(
+        queryset=Topic.objects.all(),
+        required=False,
+        widget=forms.SelectMultiple(attrs={"class": "form-control"})
+    )
+    publishers = forms.ModelMultipleChoiceField(
+        queryset=Redactor.objects.all(),
+        required=True,
+        widget=forms.SelectMultiple(attrs={"class": "form-control"})
+    )
+
+
 class NewspaperSearchForm(forms.Form):
     title = forms.CharField(
         max_length=255,
