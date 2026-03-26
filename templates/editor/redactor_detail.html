@@ -9,19 +9,19 @@
           <a class="btn btn-outline-danger" href="{% url "editor:redactor-delete" pk=redactor.id %}">Delete</a>
           <section class="mt-3">
             <h3 class="display-3">Personal information</h3>
-            <p>Username: {{ redactor.username }}</p>
-            <p>First name: {{ redactor.first_name|default:"Absent" }}</p>
-            <p>Last name: {{ redactor.last_name|default:"Absent" }}</p>
-            <p>Email: {{ redactor.email|default:"Absent" }}</p>
-            <p>Years of experience: {{ redactor.years_of_experience|default:"Absent" }}</p>
+            <p class="lead">Username: {{ redactor.username }}</p>
+            <p class="lead">First name: {{ redactor.first_name|default:"Absent" }}</p>
+            <p class="lead">Last name: {{ redactor.last_name|default:"Absent" }}</p>
+            <p class="lead">Email: {{ redactor.email|default:"Absent" }}</p>
+            <p class="lead">Years of experience: {{ redactor.years_of_experience|default:"Absent" }}</p>
           </section>
           <hr>
           <section class="mt-3">
             <h3 class="display-3">Newspapers</h3>
             {% for newspaper in redactor.newspapers.all %}
-              <p>{{ newspaper }}</p>
+              <p class="lead">{{ newspaper }}</p>
             {% empty %}
-              <p>There are no newspapers from this redactor.</p>
+              <p class="lead">There are no newspapers from this redactor.</p>
             {% endfor %}
           </section>
           <br>
