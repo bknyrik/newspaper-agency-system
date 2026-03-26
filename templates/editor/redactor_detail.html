@@ -1,25 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Redactor page</h1>
-  <a href="{% url "editor:redactor-update" pk=redactor.id %}">Update</a>
-  <a href="{% url "editor:redactor-delete" pk=redactor.id %}">Delete</a>
-  <section>
-    <h3>Personal information</h3>
-    <p>Username: {{ redactor.username }}</p>
-    <p>First name: {{ redactor.first_name|default:"Absent" }}</p>
-    <p>Last name: {{ redactor.last_name|default:"Absent" }}</p>
-    <p>Email: {{ redactor.email|default:"Absent" }}</p>
-    <p>Years of experience: {{ redactor.years_of_experience|default:"Absent" }}</p>
+  <section class="section bg-secondary text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>Redactor page</h1>
+          <a href="{% url "editor:redactor-update" pk=redactor.id %}">Update</a>
+          <a href="{% url "editor:redactor-delete" pk=redactor.id %}">Delete</a>
+          <section>
+            <h3>Personal information</h3>
+            <p>Username: {{ redactor.username }}</p>
+            <p>First name: {{ redactor.first_name|default:"Absent" }}</p>
+            <p>Last name: {{ redactor.last_name|default:"Absent" }}</p>
+            <p>Email: {{ redactor.email|default:"Absent" }}</p>
+            <p>Years of experience: {{ redactor.years_of_experience|default:"Absent" }}</p>
+          </section>
+          <hr>
+          <section>
+            <h3>Newspapers</h3>
+            {% for newspaper in redactor.newspapers.all %}
+              <p>{{ newspaper }}</p>
+            {% empty %}
+              <p>There are no newspapers from this redactor.</p>
+            {% endfor %}
+          </section>
+          <br>
+          <a href="{% url "editor:redactor-list" %}">Back to the redactor list</a>
+        </div>
+      </div>
+    </div>
   </section>
-  <hr>
-  <section>
-    <h3>Newspapers</h3>
-    {% for newspaper in redactor.newspapers.all %}
-      <p>{{ newspaper }}</p>
-    {% empty %}
-      <p>There are no newspapers from this redactor.</p>
-    {% endfor %}
-  </section>
-  <br>
-  <a href="{% url "editor:redactor-list" %}">Back to the redactor list</a>
 {% endblock %}
