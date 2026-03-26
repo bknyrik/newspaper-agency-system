@@ -6,7 +6,7 @@
         <form action="" method="post">
           {% csrf_token %}
           {{ form }}
-          <input class="btn btn-outline-danger mb-3" type="submit" value="Yes">
+          <input class="btn btn-outline-danger mb-3" type="submit" value="Delete">
         </form>
         {% if pk %}
           <a class="btn btn-outline-gray-100" href="{% url url_name pk=pk %}">Cancel</a>
