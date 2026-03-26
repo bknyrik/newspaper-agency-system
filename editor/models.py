@@ -43,12 +43,6 @@ class Newspaper(models.Model):
 
     class Meta:
         ordering = ("title", )
-        constraints = (
-            constraints.UniqueConstraint(
-                functions.Lower("title"),
-                name="unique_lower_title"
-            ),
-        )
 
     def __str__(self) -> str:
         return (
