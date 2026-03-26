@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from editor.forms import (
     TopicForm,
     TopicSearchForm,
+    NewspaperForm,
     NewspaperSearchForm,
     RedactorCreationForm,
     RedactorUpdateForm,
@@ -104,6 +105,38 @@ class FormsTests(TestCase):
         self.assertTrue(rs_form.is_valid())
         self.assertEqual(rs_form.cleaned_data, form_data)
 
+    def test_newspaper_form_is_valid(self) -> None:
+        form_data = {
+            "title": "Test title 3",
+            "content": "Test content",
+            "topics": (
+                Topic.objects.create(name="Test topic"),
+            ),
+            "publishers": (
+                get_user_model().objects.create_user(
+                    username="testuser",
+                    password="testpass12345"
+                ),
+            )
+        }
+        newspaper_form = NewspaperForm(data=form_data)
+        self.assertTrue(newspaper_form.is_valid())
+        self.assertEqual(
+            newspaper_form.cleaned_data["title"],
+            form_data["title"]
+        )
+        self.assertEqual(
+            newspaper_form.cleaned_data["content"],
+            form_data["content"]
+        )
+        self.assertEqual(
+            tuple(newspaper_form.cleaned_data["topics"]),
+            form_data["topics"]
+        )
+        self.assertEqual(
+            tuple(newspaper_form.cleaned_data["publishers"]),
+            form_data["publishers"]
+        )
 
     def test_newspaper_search_form_is_valid(self) -> None:
         form_data = {
