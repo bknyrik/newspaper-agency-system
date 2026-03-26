@@ -1,13 +1,19 @@
-<h1>Delete {{ type }} {{ name }}?</h1>
-<form action="" method="post">
-  {% csrf_token %}
-  {{ form }}
-  <br>
-  <input type="submit" value="Yes">
-</form>
-<br>
-{% if pk %}
-  <a href="{% url url_name pk=pk %}">Cancel</a>
-{% else %}
-  <a href="{% url url_name %}">Cancel</a>
-{% endif %}
+<section class="section bg-secondary text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-5 mt-5">
+        <h1>Delete {{ type }} {{ name }}?</h1>
+        <form action="" method="post">
+          {% csrf_token %}
+          {{ form }}
+          <input class="btn btn-outline-danger mb-3" type="submit" value="Yes">
+        </form>
+        {% if pk %}
+          <a class="btn btn-outline-gray-100" href="{% url url_name pk=pk %}">Cancel</a>
+        {% else %}
+          <a class="btn btn-outline-gray-100" href="{% url url_name %}">Cancel</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
