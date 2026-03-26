@@ -135,6 +135,9 @@ class RedactorSearchForm(forms.Form):
         required=False,
         label="",
         widget=forms.NumberInput(
-            attrs={"placeholder": "Search by years of experience"}
+            attrs={
+                "class": "form-control",
+                "placeholder": "Search by years of experience"
+            }
         )
     )
