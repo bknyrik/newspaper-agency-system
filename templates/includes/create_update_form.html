@@ -1,13 +1,21 @@
-<h1>{{ object|yesno:"Update,Create" }} {{ type }}</h1>
-<form action="" method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <br>
-  <input type="submit" value="Submit">
-</form>
-<br>
-{% if pk %}
-  <a href="{% url url_name pk=pk %}">Cancel</a>
-{% else %}
-  <a href="{% url url_name %}">Cancel</a>
-{% endif %}
+<section class="section bg-secondary text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-5 mt-5">
+        <h1>{{ object|yesno:"Update,Create" }} {{ type }}</h1>
+        <form action="" method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+        <br>
+        {% if pk %}
+          <a href="{% url url_name pk=pk %}">Cancel</a>
+        {% else %}
+          <a href="{% url url_name %}">Cancel</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
