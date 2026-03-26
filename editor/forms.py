@@ -54,6 +54,7 @@ class NewspaperSearchForm(forms.Form):
         queryset=Topic.objects.all(),
         required=False,
         label="Search by topic(s)",
+        widget=forms.SelectMultiple(attrs={"class": "form-control"})
     )
 
 
