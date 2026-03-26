@@ -8,19 +8,19 @@
           <a class="btn btn-outline-info" href="{% url "editor:newspaper-update" pk=newspaper.id %}">Update</a>
           <a class="btn btn-outline-danger" href="{% url "editor:newspaper-delete" pk=newspaper.id %}">Delete</a>
           <section>
-            <h3>Information</h3>
+            <h3 class="display-3 mt-3">Information</h3>
             <p>Title: {{ newspaper.title }}</p>
             <p>Published date: {{ newspaper.published_date }}</p>
             <p>Topics: {{ newspaper.topics_str }}</p>
           </section>
           <hr>
           <section>
-            <h3>Content</h3>
+            <h3 class="display-3 mt-3">Content</h3>
             <p>{{ newspaper.content }}</p>
           </section>
           <hr>
           <section>
-            <h3>Publishers</h3>
+            <h3 class="display-3 mt-3">Publishers</h3>
             <form action="" method="post">
               {% csrf_token %}
               {% if newspaper in user.newspapers.all %}
