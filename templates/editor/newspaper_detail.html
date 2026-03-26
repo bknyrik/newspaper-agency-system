@@ -5,8 +5,8 @@
       <div class="row">
         <div class="col-12">
           <h1 class="display-2 mb-4">Newspaper page</h1>
-          <a href="{% url "editor:newspaper-update" pk=newspaper.id %}">Update</a>
-          <a href="{% url "editor:newspaper-delete" pk=newspaper.id %}">Delete</a>
+          <a class="btn btn-outline-info" href="{% url "editor:newspaper-update" pk=newspaper.id %}">Update</a>
+          <a class="btn btn-outline-danger" href="{% url "editor:newspaper-delete" pk=newspaper.id %}">Delete</a>
           <section>
             <h3>Information</h3>
             <p>Title: {{ newspaper.title }}</p>
