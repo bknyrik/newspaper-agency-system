@@ -6,7 +6,7 @@
         <div class="col-12">
           <h1>Login</h1>
           {% if form.errors %}
-            <p class="lead fw-bold">Please enter a correct username and password. Note that both fields may be
+            <p class="lead fw-bold bg-danger">Please enter a correct username and password. Note that both fields may be
               case-sensitive.</p>
           {% endif %}
           <form action="{% url "login" %}" method="post">
