@@ -11,6 +11,12 @@
           {% endif %}
           <form action="{% url "login" %}" method="post">
             {% csrf_token %}
+            <div class="form-group">
+              <label for="id_username">Username:</label>
+              <input class="form-control" type="text" name="username" autofocus="" autocapitalize="none"
+                     autocomplete="username"
+                     maxlength="150" required="" id="id_username">
+            </div>
             <input type="submit" value="Log in">
           </form>
         </div>
