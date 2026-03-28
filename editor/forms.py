@@ -21,6 +21,13 @@ class TopicForm(forms.ModelForm):
         model = Topic
         fields = ("name", "newspapers")
 
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        if self.instance.pk:
+            self.fields["newspapers"].initial = (
+                self.instance.newspapers.all()
+            )
+
     def save(self, commit: bool = ...) -> Topic:
         topic = super().save(commit=False)
 
