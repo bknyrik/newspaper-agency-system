@@ -173,7 +173,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
 
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Redactor
-    queryset = Redactor.objects.prefetch_related("newspapers__topics")
+
 
 
 class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
