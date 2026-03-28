@@ -174,6 +174,13 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Redactor
 
+    def get_queryset(self) -> QuerySet[Redactor]:
+        queryset = (
+            Redactor.objects
+            .prefetch_related("newspapers__topics")
+            .filter(pk=self.kwargs["pk"])
+        )
+        return queryset
 
 
 class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
