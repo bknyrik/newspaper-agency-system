@@ -136,6 +136,13 @@ class RedactorUpdateForm(forms.ModelForm):
         required=False
     )
 
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        if self.instance.pk:
+            self.fields["newspapers"].initial = (
+                self.instance.newspapers.all()
+            )
+
     class Meta:
         model = Redactor
         fields = (
