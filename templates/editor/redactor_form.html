@@ -7,6 +7,13 @@
           <h1>{{ object|yesno:"Update,Create" }} redactor</h1>
           <form action="" method="post">
             {% csrf_token %}
+            <div class="form-group">
+              <label for="id_username">Username:</label>
+              <input class="form-control" type="text" name="username" maxlength="150" autocapitalize="none"
+                     autocomplete="username" {% if object %}value="{{ redactor.username }}"{% endif %}
+                     autofocus="" required="" aria-describedby="id_username_helptext" id="id_username">
+              <span class="form-text text-white" id="id_username_helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+            </div>
             <input class="btn btn-outline-info mt-3" type="submit" value="{{ object|yesno:"Update,Create" }}">
             <input class="btn btn-outline-info mt-3" type="reset" value="Reset">
           </form>
