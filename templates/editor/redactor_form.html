@@ -66,6 +66,9 @@
             <input class="btn btn-outline-info mt-3" type="submit" value="{{ object|yesno:"Update,Create" }}">
             <input class="btn btn-outline-info mt-3" type="reset" value="Reset">
           </form>
+          {% if object %}
+            <a class="btn btn-outline-gray-100 mt-5" href="{% url "editor:redactor-detail" pk=object.id %}">Cancel</a>
+          {% endif %}
         </div>
       </div>
     </div>
