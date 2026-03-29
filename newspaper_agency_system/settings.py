@@ -51,6 +51,8 @@ INSTALLED_APPS = [
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
