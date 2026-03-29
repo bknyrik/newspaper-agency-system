@@ -55,12 +55,6 @@ class NewspaperSearchForm(forms.Form):
             }
         )
     )
-    topics = forms.ModelMultipleChoiceField(
-        queryset=Topic.objects.all(),
-        required=False,
-        label="",
-        widget=forms.SelectMultiple(attrs={"class": "form-control"})
-    )
 
 
 class RedactorCreationForm(UserCreationForm):
