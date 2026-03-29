@@ -38,9 +38,7 @@ class TopicSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-            "placeholder": "Search by name"}
+        widget=forms.TextInput(attrs={"placeholder": "Search by name"}
         )
     )
 
