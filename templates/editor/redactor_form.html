@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block title %}
+  <title>{{ object|yesno:"Update,Create" }} redactor | Newspaper Agency</title>
+{% endblock %}
 {% block content %}
   <section class="section bg-secondary text-white pt-8">
     <div class="container">
