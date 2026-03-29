@@ -8,7 +8,6 @@ from django.urls import reverse_lazy
 from editor.models import Topic, Newspaper, Redactor
 from editor.forms import (
     TopicForm,
-    NewspaperForm,
     RedactorCreationForm,
     RedactorUpdateForm,
     TopicSearchForm,
@@ -122,7 +121,7 @@ class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
 
 class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
     model = Newspaper
-    form_class = NewspaperForm
+    fields = "__all__"
 
     def get_success_url(self) -> str:
         return reverse("editor:newspaper-detail", args=[self.object.id])
@@ -130,7 +129,7 @@ class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
 
 class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Newspaper
-    form_class = NewspaperForm
+    fields = "__all__"
 
     def get_success_url(self) -> str:
         return reverse("editor:newspaper-detail", args=[self.object.id])
