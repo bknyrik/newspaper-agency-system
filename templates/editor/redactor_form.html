@@ -42,6 +42,14 @@
                 {% endfor %}
               </select>
             </div>
+            {% if not object %}
+              <div class="form-group mt-3">
+                <label for="id_password1">Password:</label>
+                <input class="form-control" type="password" name="password1" autocomplete="new-password" required=""
+                       aria-describedby="id_password1_helptext" id="id_password1">
+                <span class="helptext" id="id_password1_helptext"></span>
+              </div>
+            {% endif %}
             <input class="btn btn-outline-info mt-3" type="submit" value="{{ object|yesno:"Update,Create" }}">
             <input class="btn btn-outline-info mt-3" type="reset" value="Reset">
           </form>
