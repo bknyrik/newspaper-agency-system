@@ -9,7 +9,7 @@
         <div class="col-md-6 col-xl-6 mb-5">
           <h1 class="text-center text-white">Newspaper list</h1>
           {% include "includes/search_form.html" %}
-          <a class="btn btn-outline-gray-100" href="{% url "editor:newspaper-create" %}">Create</a>
+          <a class="btn btn-outline-gray-100 mt-4" href="{% url "editor:newspaper-create" %}">Create</a>
           {% if newspaper_list %}
             <table class="table table-dark text-white">
               <thead>
