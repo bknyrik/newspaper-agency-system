@@ -19,6 +19,11 @@
               <input class="form-control" type="text" name="first_name" maxlength="150" id="id_first_name"
                      {% if object %}value="{{ redactor.first_name }}"{% endif %}>
             </div>
+            <div class="form-group mt-3">
+              <label for="id_last_name">Last name:</label>
+              <input class="form-control" type="text" name="last_name" maxlength="150" id="id_last_name"
+                     {% if object %}value="{{ redactor.last_name }}"{% endif %}>
+            </div>
             <input class="btn btn-outline-info mt-3" type="submit" value="{{ object|yesno:"Update,Create" }}">
             <input class="btn btn-outline-info mt-3" type="reset" value="Reset">
           </form>
