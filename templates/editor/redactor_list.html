@@ -26,7 +26,7 @@
                 <tr>
                   <td><a class="btn btn-outline-gray-100"
                          href="{% url "editor:redactor-detail" pk=redactor.id %}">{{ redactor.id }}</a></td>
-                  <td>{{ redactor.username }}</td>
+                  <td>{{ redactor.username }}{% if redactor == user %} (Me){% endif %}</td>
                   <td>{{ redactor.first_name|default:"Absent" }}</td>
                   <td>{{ redactor.last_name|default:"Absent" }}</td>
                   <td>{{ redactor.years_of_experience|default_if_none:"Absent" }}</td>
