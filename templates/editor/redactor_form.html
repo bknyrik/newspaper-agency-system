@@ -68,6 +68,8 @@
           </form>
           {% if object %}
             <a class="btn btn-outline-gray-100 mt-5" href="{% url "editor:redactor-detail" pk=object.id %}">Cancel</a>
+          {% else %}
+            <a class="btn btn-outline-gray-100 mt-5" href="{% url "editor:redactor-list" %}">Cancel</a>
           {% endif %}
         </div>
       </div>
