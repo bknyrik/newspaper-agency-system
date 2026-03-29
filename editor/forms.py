@@ -48,12 +48,7 @@ class NewspaperSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control",
-                "placeholder": "Search by title"
-            }
-        )
+        widget=forms.TextInput(attrs={"placeholder": "Search by title"})
     )
 
 
