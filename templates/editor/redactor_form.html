@@ -24,6 +24,11 @@
               <input class="form-control" type="text" name="last_name" maxlength="150" id="id_last_name"
                      {% if object %}value="{{ redactor.last_name }}"{% endif %}>
             </div>
+            <div class="form-group mt-3">
+              <label for="id_email">Email address:</label>
+              <input class="form-control" type="email" name="email" maxlength="254" id="id_email"
+                     {% if object %}value="{{ redactor.email }}"{% endif %}>
+            </div>
             <input class="btn btn-outline-info mt-3" type="submit" value="{{ object|yesno:"Update,Create" }}">
             <input class="btn btn-outline-info mt-3" type="reset" value="Reset">
           </form>
