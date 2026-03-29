@@ -34,6 +34,14 @@
               <input class="form-control" type="number" name="years_of_experience" min="1" id="id_years_of_experience"
                      {% if object %}value="{{ redactor.years_of_experience }}"{% endif %}>
             </div>
+            <div class="form-group mt-3">
+              <label for="id_newspapers">Newspapers:</label>
+              <select class="form-control" name="newspapers" id="id_newspapers" multiple>
+                {% for newspaper in form.newspapers %}
+                  {{ newspaper }}
+                {% endfor %}
+              </select>
+            </div>
             <input class="btn btn-outline-info mt-3" type="submit" value="{{ object|yesno:"Update,Create" }}">
             <input class="btn btn-outline-info mt-3" type="reset" value="Reset">
           </form>
