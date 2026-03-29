@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-12 mb-5 mt-5">
         <h1>{{ object|yesno:"Update,Create" }} {{ type }}</h1>
-        <form action="" method="post">
+        <form action="" method="post" novalidate>
           {% csrf_token %}
           {{ form|crispy }}
           <input class="btn btn-outline-info mt-3" type="submit" value="{{ object|yesno:"Update,Create" }}">
