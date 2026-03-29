@@ -8,9 +8,9 @@
       <div class="row">
         <div class="col-12">
           {% if object %}
-            <a class="btn btn-outline-gray-100 mt-5" href="{% url "editor:redactor-detail" pk=object.id %}">Cancel</a>
+            {% include "includes/create_update_form.html" with type="redactor" url_name="editor:redactor-detail" pk=redactor.id %}
           {% else %}
-            <a class="btn btn-outline-gray-100 mt-5" href="{% url "editor:redactor-list" %}">Cancel</a>
+            {% include "includes/create_update_form.html" with type="redactor" url_name="editor:redactor-list" %}
           {% endif %}
         </div>
       </div>
