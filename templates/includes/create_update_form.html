@@ -1,3 +1,4 @@
+{% load crispy_forms_filters %}
 <section class="section bg-secondary text-white">
   <div class="container">
     <div class="row">
@@ -5,7 +6,7 @@
         <h1>{{ object|yesno:"Update,Create" }} {{ type }}</h1>
         <form action="" method="post">
           {% csrf_token %}
-          {{ form.as_p }}
+          {{ form|crispy }}
           <input class="btn btn-outline-info" type="submit" value="{{ object|yesno:"Update,Create" }}">
           <input class="btn btn-outline-info" type="reset" value="Reset">
         </form>
