@@ -14,7 +14,6 @@ class TopicForm(forms.ModelForm):
     newspapers = forms.ModelMultipleChoiceField(
         queryset=Newspaper.objects.prefetch_related("topics"),
         required=False,
-        widget=forms.SelectMultiple(attrs={"class": "form-control"})
     )
 
     class Meta:
