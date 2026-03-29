@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 {% block title %}
   <title>Login | Newspaper Agency</title>
 {% endblock %}
@@ -14,6 +15,7 @@
           {% endif %}
           <form action="{% url "login" %}" method="post">
             {% csrf_token %}
+            {{ form|crispy }}
             <input class="btn btn-outline-info mt-3" type="submit" value="Log in">
           </form>
         </div>
