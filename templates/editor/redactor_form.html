@@ -1,3 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+  <section class="section bg-secondary text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>{{ object|yesno:"Update,Create" }} redactor</h1>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
