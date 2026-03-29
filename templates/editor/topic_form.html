@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block title %}
+  <title>{{ object|yesno:"Update,Create" }} topic | Newspaper Agency</title>
+{% endblock %}
 {% block content %}
   {% include "includes/create_update_form.html" with type="topic" url_name="editor:topic-list" %}
 {% endblock %}
