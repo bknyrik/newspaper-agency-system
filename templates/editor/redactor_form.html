@@ -3,17 +3,9 @@
   <title>{{ object|yesno:"Update,Create" }} redactor | Newspaper Agency</title>
 {% endblock %}
 {% block content %}
-  <section class="section bg-secondary text-white">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          {% if object %}
-            {% include "includes/create_update_form.html" with type="redactor" url_name="editor:redactor-detail" pk=redactor.id %}
-          {% else %}
-            {% include "includes/create_update_form.html" with type="redactor" url_name="editor:redactor-list" %}
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </section>
+  {% if object %}
+    {% include "includes/create_update_form.html" with type="redactor" url_name="editor:redactor-detail" pk=redactor.id %}
+  {% else %}
+    {% include "includes/create_update_form.html" with type="redactor" url_name="editor:redactor-list" %}
+  {% endif %}
 {% endblock %}
