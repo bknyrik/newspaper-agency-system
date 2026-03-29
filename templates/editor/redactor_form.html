@@ -8,67 +8,6 @@
       <div class="row">
         <div class="col-12">
           <h1>{{ object|yesno:"Update,Create" }} redactor</h1>
-          <form action="" method="post">
-            {% csrf_token %}
-            <div class="form-group">
-              <label for="id_username">Username:</label>
-              <input class="form-control" type="text" name="username" maxlength="150" autocapitalize="none"
-                     autocomplete="username" {% if object %}value="{{ redactor.username }}"{% endif %}
-                     autofocus="" required="" aria-describedby="id_username_helptext" id="id_username">
-              <span class="form-text text-white" id="id_username_helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
-            </div>
-            <div class="form-group mt-3">
-              <label for="id_first_name">First name:</label>
-              <input class="form-control" type="text" name="first_name" maxlength="150" id="id_first_name"
-                     {% if object %}value="{{ redactor.first_name }}"{% endif %}>
-            </div>
-            <div class="form-group mt-3">
-              <label for="id_last_name">Last name:</label>
-              <input class="form-control" type="text" name="last_name" maxlength="150" id="id_last_name"
-                     {% if object %}value="{{ redactor.last_name }}"{% endif %}>
-            </div>
-            <div class="form-group mt-3">
-              <label for="id_email">Email address:</label>
-              <input class="form-control" type="email" name="email" maxlength="254" id="id_email"
-                     {% if object %}value="{{ redactor.email }}"{% endif %}>
-            </div>
-            <div class="form-group mt-3">
-              <label for="id_years_of_experience">Years of experience:</label>
-              <input class="form-control" type="number" name="years_of_experience" min="1" id="id_years_of_experience"
-                     {% if object %}value="{{ redactor.years_of_experience }}"{% endif %}>
-            </div>
-            <div class="form-group mt-3">
-              <label for="id_newspapers">Newspapers:</label>
-              <select class="form-control" name="newspapers" id="id_newspapers" multiple>
-                {% for newspaper in form.newspapers %}
-                  {{ newspaper }}
-                {% endfor %}
-              </select>
-            </div>
-            {% if not object %}
-              <div class="form-group mt-3">
-                <label for="id_password1">Password:</label>
-                <input class="form-control" type="password" name="password1" autocomplete="new-password" required=""
-                       aria-describedby="id_password1_helptext" id="id_password1">
-                <span class="helptext" id="id_password1_helptext"></span>
-                <ul class="mt-3">
-                  <li>Your password can’t be too similar to your other personal information.</li>
-                  <li>Your password must contain at least 8 characters.</li>
-                  <li>Your password can’t be a commonly used password.</li>
-                  <li>Your password can’t be entirely numeric.</li>
-                </ul>
-              </div>
-              <div class="form-group mt-3">
-                <label for="id_password2">Password confirmation:</label>
-                <input class="form-control" type="password" name="password2" autocomplete="new-password" required=""
-                       aria-describedby="id_password2_helptext" id="id_password2">
-                <span class="helptext"
-                      id="id_password2_helptext">Enter the same password as before, for verification.</span>
-              </div>
-            {% endif %}
-            <input class="btn btn-outline-info mt-3" type="submit" value="{{ object|yesno:"Update,Create" }}">
-            <input class="btn btn-outline-info mt-3" type="reset" value="Reset">
-          </form>
           {% if object %}
             <a class="btn btn-outline-gray-100 mt-5" href="{% url "editor:redactor-detail" pk=object.id %}">Cancel</a>
           {% else %}
