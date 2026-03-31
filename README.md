@@ -73,3 +73,5 @@ ___
 ## Usage
 Visit `http://127.0.0.1:8000/` in your browser to use the application. And also don't forget to create a superuser:
 ```python manage.py createsuperuser```
+## Contact
+Email: knyrikkolesnichenko2004@gmail.com
