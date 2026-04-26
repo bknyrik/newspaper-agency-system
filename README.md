@@ -57,6 +57,9 @@ Login page:
 Logout page:
 ![Logout](documentation/Logout.PNG)
 ___
+## Check it out
+[Library project deployed to Render](https://newspaper-agency-system.render.com/)
+___
 ## Installation
 1. Clone the repository:
 ```
