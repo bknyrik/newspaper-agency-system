@@ -61,7 +61,7 @@ Logout page:
 ![404](documentation/404.PNG)
 ___
 ## Check it out
-[Library project deployed to Render](https://newspaper-agency-system.render.com/)
+[Newspaper agency system project deployed to Render](https://newspaper-agency-system-wpx6.onrender.com)
 ___
 ## Installation
 1. Clone the repository:
