@@ -1,0 +1,436 @@
+[
+{
+    "model": "editor.topic",
+    "pk": 1,
+    "fields": {
+        "name": "IT"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 2,
+    "fields": {
+        "name": "Politics"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 3,
+    "fields": {
+        "name": "Crime"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 4,
+    "fields": {
+        "name": "Economy"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 5,
+    "fields": {
+        "name": "Games"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 6,
+    "fields": {
+        "name": "Education"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 7,
+    "fields": {
+        "name": "Art"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 8,
+    "fields": {
+        "name": "Trade"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 10,
+    "fields": {
+        "name": "Sport"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 16,
+    "fields": {
+        "name": "Cinema"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 17,
+    "fields": {
+        "name": "Literature"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 21,
+    "fields": {
+        "name": "TEST_TOPIC"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 22,
+    "fields": {
+        "name": "Topic"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 24,
+    "fields": {
+        "name": "TEST"
+    }
+},
+{
+    "model": "editor.topic",
+    "pk": 25,
+    "fields": {
+        "name": "Lifestyle"
+    }
+},
+{
+    "model": "editor.redactor",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$riUBaoyzJGeOwWMQ5cJAg3$FuQMd0X7IwQizFFxksS+IsC3ZKGEV8vohAI9NAZL5so=",
+        "last_login": "2026-04-26T21:51:36.346Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-01-22T10:15:32.451Z",
+        "years_of_experience": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "editor.redactor",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$J7ns0WqMqctocr1VQGdlg7$FUu+F3N7KKZ41rsJrKSQC1BC7oLBjMPdZOTGAcaHBKY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "johndoe",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-22T11:19:34.474Z",
+        "years_of_experience": 2,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "editor.redactor",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$jTgWxtnlKCqPKgCKWGJuzK$NMSq72h/9yZt7duke6P+RPcjnnXoTc34dkHqC1wk1aM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "clarkkent",
+        "first_name": "Clark",
+        "last_name": "Kent",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-22T11:32:06.715Z",
+        "years_of_experience": 4,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "editor.redactor",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$7uVIFyHYhnj3r7wKZxwEuR$Jqw6bkVCIYWTBlMvr+WGSahtjB+sTtIeU//W7EVsH5Y=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "loislane",
+        "first_name": "Lois",
+        "last_name": "Lane",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-22T16:39:45.311Z",
+        "years_of_experience": 21,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "editor.redactor",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$4X8ePqraJRQKmte7JnWyOg$19XTARILeA+3OjbIXkjYPp977wiQ2i7ujWbJX54FKbI=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "jacklondon",
+        "first_name": "Jack",
+        "last_name": "London",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-22T16:40:20.099Z",
+        "years_of_experience": 18,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "editor.redactor",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$UxpImwQaPgqpsmtjz6xRpS$pMP53Wb1U5lbE1Igp8uc71Nyq0445vrATTU7WkEOlHE=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "peterparker",
+        "first_name": "Peter",
+        "last_name": "Parker",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-01-25T11:47:48Z",
+        "years_of_experience": 5,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "editor.redactor",
+    "pk": 17,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$mIZq5mXKqVp6szzj89nMnA$3Wo+EbjYqIctjMwL1A1PxpvHxSCl6twkB+O7rBZsnfU=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "brucewayne",
+        "first_name": "Bruce",
+        "last_name": "Wayne",
+        "email": "brucewayne@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-03-13T13:34:47.261Z",
+        "years_of_experience": 10,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "editor.redactor",
+    "pk": 18,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$pleafWGgtRbS309iFnxu7n$Ot29YAdjGlQ1O5QLR8hc4B8KsCEGgIGrvO2NAvA2zvk=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "testredactor",
+        "first_name": "Test first",
+        "last_name": "Test last",
+        "email": "test@mail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-03-20T15:59:10.595Z",
+        "years_of_experience": 10,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "editor.redactor",
+    "pk": 20,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$qXmvhUsypdMByh0GnpcgxD$dajve/rWgtwXNOP9rAdgMcVljO1DSvGQIu3ediNO+20=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "testuser",
+        "first_name": "Test First",
+        "last_name": "Test Last",
+        "email": "testemail@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-03-28T19:26:17.516Z",
+        "years_of_experience": 5,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "editor.newspaper",
+    "pk": 1,
+    "fields": {
+        "title": "Bla bla bla",
+        "content": "Bla bla bla bla bla bla bla bla bla bla bla bla BLA..",
+        "published_date": "2026-01-22",
+        "topics": [
+            4,
+            2
+        ],
+        "publishers": [
+            2,
+            5,
+            17,
+            20
+        ]
+    }
+},
+{
+    "model": "editor.newspaper",
+    "pk": 2,
+    "fields": {
+        "title": "Bla bla bla bla",
+        "content": "Bla bla bla bla bla.",
+        "published_date": "2026-01-22",
+        "topics": [
+            4,
+            6
+        ],
+        "publishers": [
+            1
+        ]
+    }
+},
+{
+    "model": "editor.newspaper",
+    "pk": 3,
+    "fields": {
+        "title": "Bla bla bla 2",
+        "content": "Bla. Bla.",
+        "published_date": "2026-01-24",
+        "topics": [
+            8
+        ],
+        "publishers": [
+            3
+        ]
+    }
+},
+{
+    "model": "editor.newspaper",
+    "pk": 5,
+    "fields": {
+        "title": "Test newspaper",
+        "content": "Test content.",
+        "published_date": "2026-01-24",
+        "topics": [
+            6
+        ],
+        "publishers": [
+            1
+        ]
+    }
+},
+{
+    "model": "editor.newspaper",
+    "pk": 7,
+    "fields": {
+        "title": "Test newspaper 2",
+        "content": "Test content.",
+        "published_date": "2026-03-11",
+        "topics": [
+            7,
+            16
+        ],
+        "publishers": [
+            3,
+            4
+        ]
+    }
+},
+{
+    "model": "editor.newspaper",
+    "pk": 8,
+    "fields": {
+        "title": "Title",
+        "content": "Content",
+        "published_date": "2026-03-15",
+        "topics": [
+            7
+        ],
+        "publishers": []
+    }
+},
+{
+    "model": "editor.newspaper",
+    "pk": 9,
+    "fields": {
+        "title": "Test title",
+        "content": "Test content",
+        "published_date": "2026-03-20",
+        "topics": [
+            7,
+            25
+        ],
+        "publishers": [
+            1
+        ]
+    }
+},
+{
+    "model": "editor.newspaper",
+    "pk": 10,
+    "fields": {
+        "title": "TEST_TITLE",
+        "content": "TEST_CONTENT.",
+        "published_date": "2026-03-26",
+        "topics": [
+            7,
+            16,
+            6
+        ],
+        "publishers": [
+            1
+        ]
+    }
+},
+{
+    "model": "editor.newspaper",
+    "pk": 11,
+    "fields": {
+        "title": "TEST_NEWSPAPER",
+        "content": "TEST_CONTENT.",
+        "published_date": "2026-03-29",
+        "topics": [
+            21
+        ],
+        "publishers": [
+            1
+        ]
+    }
+},
+{
+    "model": "editor.newspaper",
+    "pk": 12,
+    "fields": {
+        "title": "New Title",
+        "content": "New Content.",
+        "published_date": "2026-03-29",
+        "topics": [
+            16
+        ],
+        "publishers": [
+            1
+        ]
+    }
+}
+]
