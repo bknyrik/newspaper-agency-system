@@ -56,6 +56,9 @@ Login page:
 
 Logout page:
 ![Logout](documentation/Logout.PNG)
+
+404 page:
+![404](documentation/404.PNG)
 ___
 ## Check it out
 [Library project deployed to Render](https://newspaper-agency-system.render.com/)
