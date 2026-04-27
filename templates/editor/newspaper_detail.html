@@ -27,7 +27,7 @@
               {% if newspaper in user.newspapers.all %}
                 <button class="btn btn-outline-danger mt-2 mb-3">Delete me from this newspaper</button>
               {% else %}
-                <button class="btn btn-outline-success mt-2 mb-3">Assign me to this car</button>
+                <button class="btn btn-outline-success mt-2 mb-3">Assign me to this newspaper</button>
               {% endif %}
             </form>
             {% for publisher in newspaper.publishers.all %}
