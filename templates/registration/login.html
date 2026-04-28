@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block title %}
+  <title>Login | Newspaper Agency</title>
+{% endblock %}
+{% block content %}
+  <section class="section-header bg-secondary text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>Login</h1>
+          <form action="{% url "login" %}" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-outline-info mt-3" type="submit" value="Log in">
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

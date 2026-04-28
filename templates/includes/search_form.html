@@ -1,0 +1,7 @@
+{% load crispy_forms_filters %}
+<form action="#" method="get">
+  {% csrf_token %}
+  {{ search_form|crispy }}
+  <input class="btn btn-outline-gray-100 mt-3" type="submit" value="Search">
+  <input class="btn btn-outline-gray-100 mt-3" type="reset" value="Reset">
+</form>

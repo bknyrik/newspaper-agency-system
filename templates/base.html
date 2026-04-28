@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="apple-touch-icon" sizes="120x120" href="{% static "img/apple-touch-icon.png" %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static "img/favicon-32x32.png" %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static "img/favicon-16x16.png" %}">
+  <link rel="icon" type="image/x-icon" href="{% static "img/favicon.ico" %}">
+  <link rel="stylesheet" href="{% static "css/styles.css" %}">
+  {% block title %}
+    <title>Newspaper Agency</title>
+  {% endblock %}
+</head>
+<body>
+{% block header %}
+  {% include "includes/navigation.html" %}
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block footer %}
+  {% include "includes/footer.html" %}
+{% endblock %}
+</body>
+</html>

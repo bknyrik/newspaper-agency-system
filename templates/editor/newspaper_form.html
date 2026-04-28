@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}
+  <title>{{ object|yesno:"Update,Create" }} newspaper | Newspaper Agency</title>
+{% endblock %}
+{% block content %}
+  {% if object %}
+    {% include "includes/create_update_form.html" with type="newspaper" url_name="editor:newspaper-detail" pk=newspaper.id %}
+  {% else %}
+    {% include "includes/create_update_form.html" with type="newspaper" url_name="editor:newspaper-list" %}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,203 @@
+from django.db.models import QuerySet
+from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpRequest, HttpResponseRedirect
+from django.shortcuts import reverse, get_object_or_404
+from django.urls import reverse_lazy
+
+from editor.models import Topic, Newspaper, Redactor
+from editor.forms import (
+    TopicForm,
+    RedactorCreationForm,
+    RedactorUpdateForm,
+    TopicSearchForm,
+    NewspaperSearchForm,
+    RedactorSearchForm
+)
+
+
+class IndexView(LoginRequiredMixin, generic.TemplateView):
+
+    template_name = "editor/index.html"
+
+    def get_context_data(self, **kwargs) -> dict:
+        context = super().get_context_data(**kwargs)
+        context |= {
+            "count_topics": Topic.objects.count(),
+            "count_newspapers": Newspaper.objects.count(),
+            "count_redactors": Redactor.objects.count()
+        }
+        return context
+
+
+class TopicListView(LoginRequiredMixin, generic.ListView):
+    model = Topic
+    paginate_by = 10
+
+    def get_context_data(self, *, object_list: list = ..., **kwargs) -> dict:
+        context = super(TopicListView, self).get_context_data(**kwargs)
+        context["search_form"] = TopicSearchForm(self.request.GET)
+        return context
+
+    def get_queryset(self) -> QuerySet[Topic]:
+        queryset = Topic.objects.all()
+        name = self.request.GET.get("name", "")
+        search_form = TopicSearchForm(self.request.GET)
+
+        if search_form.is_valid():
+            queryset = queryset.filter(name__icontains=name)
+
+        return queryset
+
+
+class TopicCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Topic
+    form_class = TopicForm
+    success_url = reverse_lazy("editor:topic-list")
+
+
+class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Topic
+    form_class = TopicForm
+    success_url = reverse_lazy("editor:topic-list")
+
+
+class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Topic
+    success_url = reverse_lazy("editor:topic-list")
+
+
+class NewspaperListView(LoginRequiredMixin, generic.ListView):
+    model = Newspaper
+    queryset = Newspaper.objects.prefetch_related("topics")
+    paginate_by = 10
+
+    def get_context_data(self, *, object_list: list = ..., **kwargs) -> dict:
+        context = super().get_context_data(**kwargs)
+        context["search_form"] = NewspaperSearchForm(self.request.GET)
+        return context
+
+    def get_queryset(self) -> QuerySet[Newspaper]:
+        queryset = Newspaper.objects.prefetch_related("topics")
+        title = self.request.GET.get("title", "")
+        topics_ids = tuple(
+            int(topic_id)
+            for topic_id in self.request.GET.getlist("topics", "")
+        )
+        search_form = NewspaperSearchForm(self.request.GET)
+
+        if search_form.is_valid():
+            queryset = queryset.filter(title__icontains=title)
+
+            if topics_ids:
+                queryset = queryset.filter(
+                    topics__id__in=topics_ids
+                ).distinct()
+
+        return queryset
+
+
+class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Newspaper
+
+    def post(
+        self,
+        request: HttpRequest,
+        *args,
+        **kwargs
+    ) -> HttpResponseRedirect:
+        newspaper = get_object_or_404(Newspaper, pk=kwargs["pk"])
+        redactor = request.user
+
+        if redactor in newspaper.publishers.all():
+            newspaper.publishers.remove(redactor.id)
+        else:
+            newspaper.publishers.add(redactor.id)
+
+        return HttpResponseRedirect(
+            reverse("editor:newspaper-detail", args=[kwargs["pk"]])
+        )
+
+
+class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Newspaper
+    fields = "__all__"
+
+    def get_success_url(self) -> str:
+        return reverse("editor:newspaper-detail", args=[self.object.id])
+
+
+class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Newspaper
+    fields = "__all__"
+
+    def get_success_url(self) -> str:
+        return reverse("editor:newspaper-detail", args=[self.object.id])
+
+
+class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Newspaper
+    success_url = reverse_lazy("editor:newspaper-list")
+
+
+class RedactorListView(LoginRequiredMixin, generic.ListView):
+    model = Redactor
+    paginate_by = 10
+
+    def get_context_data(self, *, object_list: list = ..., **kwargs) -> dict:
+        context = super(RedactorListView, self).get_context_data(**kwargs)
+        context["search_form"] = RedactorSearchForm(self.request.GET)
+        return context
+
+    def get_queryset(self) -> QuerySet[Redactor]:
+        queryset = Redactor.objects.prefetch_related("newspapers")
+        username = self.request.GET.get("username", "")
+        years_of_experience = self.request.GET.get(
+            "years_of_experience",
+            None
+        )
+        search_form = RedactorSearchForm(self.request.GET)
+
+        if search_form.is_valid():
+            if username:
+                queryset = queryset.filter(username__icontains=username)
+
+            if years_of_experience:
+                queryset = queryset.filter(
+                    years_of_experience=years_of_experience
+                )
+
+        return queryset
+
+
+class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Redactor
+
+    def get_queryset(self) -> QuerySet[Redactor]:
+        queryset = (
+            Redactor.objects
+            .prefetch_related("newspapers__topics")
+            .filter(pk=self.kwargs["pk"])
+        )
+        return queryset
+
+
+class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Redactor
+    form_class = RedactorCreationForm
+
+    def get_success_url(self) -> str:
+        return reverse("editor:redactor-detail", args=[self.object.id])
+
+
+class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Redactor
+    form_class = RedactorUpdateForm
+
+    def get_success_url(self) -> str:
+        return reverse("editor:redactor-detail", args=[self.object.id])
+
+
+class RedactorDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Redactor
+    success_url = reverse_lazy("editor:redactor-list")

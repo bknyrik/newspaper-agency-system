@@ -1,0 +1,21 @@
+{% load crispy_forms_filters %}
+<section class="section bg-secondary text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-5 mt-5">
+        <h1>{{ object|yesno:"Update,Create" }} {{ type }}</h1>
+        <form action="" method="post" novalidate>
+          {% csrf_token %}
+          {{ form|crispy }}
+          <input class="btn btn-outline-info mt-3" type="submit" value="{{ object|yesno:"Update,Create" }}">
+          <input class="btn btn-outline-info mt-3" type="reset" value="Reset">
+        </form>
+        {% if pk %}
+          <a class="btn btn-outline-gray-100 mt-5" href="{% url url_name pk=pk %}">Cancel</a>
+        {% else %}
+          <a class="btn btn-outline-gray-100 mt-5" href="{% url url_name %}">Cancel</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

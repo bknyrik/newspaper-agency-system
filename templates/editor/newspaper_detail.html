@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}
+  <title>Newspaper | Newspaper Agency</title>
+{% endblock %}
+{% block content %}
+  <section class="section bg-secondary text-white pt-9">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="display-2 mb-4">Newspaper page</h1>
+          <a class="btn btn-outline-info" href="{% url "editor:newspaper-update" pk=newspaper.id %}">Update</a>
+          <a class="btn btn-outline-danger" href="{% url "editor:newspaper-delete" pk=newspaper.id %}">Delete</a>
+          <section>
+            <h3 class="display-3 mt-3">Information</h3>
+            <p class="lead"><span class="fw-bold">Title:</span> {{ newspaper.title }}</p>
+            <p class="lead"><span class="fw-bold">Published date:</span> {{ newspaper.published_date }}</p>
+            <p class="lead"><span class="fw-bold">Topics:</span> {{ newspaper.topics_str }}</p>
+          </section>
+          <section>
+            <h3 class="display-3 mt-3">Content</h3>
+            <p class="lead">{{ newspaper.content }}</p>
+          </section>
+          <section>
+            <h3 class="display-3 mt-3">Publishers</h3>
+            <form action="" method="post">
+              {% csrf_token %}
+              {% if newspaper in user.newspapers.all %}
+                <button class="btn btn-outline-danger mt-2 mb-3">Delete me from this newspaper</button>
+              {% else %}
+                <button class="btn btn-outline-success mt-2 mb-3">Assign me to this newspaper</button>
+              {% endif %}
+            </form>
+            {% for publisher in newspaper.publishers.all %}
+              <p class="lead">{{ publisher }}</p>
+            {% empty %}
+              <p class="lead">There are no publishers of this newspaper.</p>
+            {% endfor %}
+          </section>
+          <a class="btn btn-outline-gray-100" href="{% url "editor:newspaper-list" %}">Back to the newspaper list</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

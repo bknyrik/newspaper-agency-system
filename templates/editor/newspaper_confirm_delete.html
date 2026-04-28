@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}
+  <title>Delete newspaper | Newspaper Agency</title>
+{% endblock %}
+{% block content %}
+  {% include "includes/confirm_delete_form.html" with name=newspaper.title type="newspaper" url_name="editor:newspaper-detail" pk=newspaper.id %}
+{% endblock %}

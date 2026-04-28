@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}
+  <title>{{ object|yesno:"Update,Create" }} redactor | Newspaper Agency</title>
+{% endblock %}
+{% block content %}
+  {% if object %}
+    {% include "includes/create_update_form.html" with type="redactor" url_name="editor:redactor-detail" pk=redactor.id %}
+  {% else %}
+    {% include "includes/create_update_form.html" with type="redactor" url_name="editor:redactor-list" %}
+  {% endif %}
+{% endblock %}

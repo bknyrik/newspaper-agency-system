@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}
+  <title>Newspapers | Newspaper Agency</title>
+{% endblock %}
+{% block content %}
+  <section class="section-sm bg-secondary pt-9">
+    <div class="container">
+      <div class="row align-items-center justify-content-around">
+        <div class="col-md-6 col-xl-6 mb-5">
+          <h1 class="text-center text-white">Newspaper list</h1>
+          {% include "includes/search_form.html" %}
+          <a class="btn btn-outline-gray-100 mt-4" href="{% url "editor:newspaper-create" %}">Create</a>
+          {% if newspaper_list %}
+            <table class="table table-dark text-white">
+              <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Published data</th>
+                <th scope="col">Topics</th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for newspaper in newspaper_list %}
+                <tr>
+                  <td><a class="btn btn-outline-gray-100"
+                         href="{% url "editor:newspaper-detail" pk=newspaper.id %}">{{ newspaper.id }}</a></td>
+                  <td>{{ newspaper.title }}</td>
+                  <td>{{ newspaper.published_date }}</td>
+                  <td>{{ newspaper.topics_str }}</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <div class="col-12 col-md-7 col-lg-6 text-center text-md-left text-white">
+              <br>
+              <p class="display-6">There are no newspapers in the system.</p>
+            </div>
+          {% endif %}
+          {% include "includes/pagination.html" %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
