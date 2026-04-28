@@ -62,6 +62,12 @@ Logout page:
 ___
 ## Check it out
 [Newspaper agency system project deployed to Render](https://newspaper-agency-system-wpx6.onrender.com)
+
+To view the website, use this user:
+```
+login: user
+password: user12345
+```
 ___
 ## Installation
 1. Clone the repository:
