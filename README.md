@@ -76,8 +76,8 @@ git clone https://github.com/bknyrik/newspaper-agency-system.git
 ```
 2. Create a virtual environment `python -m venv .venv`;
 3. Activate the virtual environment:
-    - Windows - `newspaper_agency_system\Scripts\activate`;
-    - macOS/Linux - `source newspaper_agency_system/bin/activate`.
+    - Windows - `.venv\Scripts\activate`;
+    - macOS/Linux - `source .venv/bin/activate`.
 4. Install all dependencies `pip install -r requirements.txt`;
 5. Apply migrations `python manage.py migrate`;
 6. Run the server `python manage.py runserver`
