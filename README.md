@@ -1,4 +1,4 @@
-# newspaper-agency-system
+# Newspaper Agency System
 
 ## Description
 This project helps users track newspapers, their topics and assigned redactors.
