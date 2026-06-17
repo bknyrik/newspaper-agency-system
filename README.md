@@ -1,5 +1,5 @@
 # newspaper-agency-system
-___
+
 ## Description
 This project helps users track newspapers, their topics and assigned redactors.
 
@@ -59,7 +59,7 @@ Logout page:
 
 404 page:
 ![404](documentation/404.PNG)
-___
+
 ## Check it out
 [Newspaper agency system project deployed to Render](https://newspaper-agency-system-wpx6.onrender.com)
 
@@ -68,7 +68,7 @@ To view the website, use this user:
 login: user
 password: user12345
 ```
-___
+
 ## Installation
 1. Clone the repository:
 ```
@@ -81,7 +81,7 @@ git clone https://github.com/bknyrik/newspaper-agency-system.git
 4. Install all dependencies `pip install -r requirements.txt`;
 5. Apply migrations `python manage.py migrate`;
 6. Run the server `python manage.py runserver`
-___
+
 ## Usage
 Visit `http://127.0.0.1:8000/` in your browser to use the application. And also don't forget to create a superuser:
 ```python manage.py createsuperuser```
